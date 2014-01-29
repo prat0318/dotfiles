@@ -1,4 +1,50 @@
+execute pathogen#infect()
+set number
+set hlsearch
+set numberwidth=3
 syntax on
+filetype plugin indent on
 
-" Wrap gitcommit file types at the appropriate length
-filetype indent plugin on
+augroup BWCCreateDir
+	autocmd!
+	autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
+augroup END
+
+let NERDTreeMapActivateNode='f'
+let NERDTreeIgnore = ['\.pyc$']
+let g:nerdtree_tabs_open_on_console_startup=1
+let NERDTreeWinSize=18
+
+nnoremap <C-l> :NERDTreeFind<CR>
+
+inoremap <C-Left> <Esc>:tabprevious<CR>
+inoremap <C-Right> <Esc>:tabnext<CR>
+
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
+imap <silent> <A-Up> <Esc>:wincmd k<CR>
+imap <silent> <A-Down> <Esc>:wincmd j<CR>
+imap <silent> <A-Left> <Esc>:wincmd h<CR>
+imap <silent> <A-Right> <Esc>:wincmd l<CR>
+
+inoremap <C-k> <Esc>:NERDTreeToggle<CR>
+nnoremap <C-k> :NERDTreeToggle<CR>
+
+set pastetoggle=<C-o>
+"autocmd Filetype python setlocal ts=8 et sw=4 sts=4
+"colorscheme torte
+
+nnoremap <F2> :set nonumber!<CR>
+"nnoremap <C-j> :set invnumber<CR>
+"inoremap <C-j> <Esc>:set invnumber<CR>
+
+inoremap jk <Esc>
+inoremap jkj <Esc>:w<CR>
+nnoremap ; : 
+
