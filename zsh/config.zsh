@@ -1,3 +1,4 @@
+: <<'END'
 if [[ -n $SSH_CONNECTION ]]; then
   export PS1='%m:%3~$(git_info_for_prompt)%# '
 else
@@ -7,9 +8,9 @@ fi
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
 
-fpath=($ZSH/functions $fpath)
+#fpath=($ZSH/functions $fpath)
 
-autoload -U $ZSH/functions/*(:t)
+#autoload -U $ZSH/functions/*(:t)
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -38,11 +39,34 @@ setopt HIST_REDUCE_BLANKS
 setopt complete_aliases
 
 zle -N newtab
+END
+#######################################
+#Original zsh starts here...
+#######################################
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="robbyrussell"
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(ant django extract git git-flow github history-substring-search pip python ruby rvm ssh-agent)
+
+source $ZSH/oh-my-zsh.sh
+source ~/.rvm/scripts/rvm
+export RUBYOPT="-I ."
+
+export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/prat0318/.rvm/bin:/home/prat0318/setups/sbt/bin
+
+export JAVA_HOME=/usr/lib/jvm/default-java
+
+#specifig to unity_db
+export MODE=local
+
+export CLASSPATH=.:$CLASSPATH
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+export ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
+export ORACLE_SID=XE
+export PATH=$ORACLE_HOME/bin:$PATH
+
