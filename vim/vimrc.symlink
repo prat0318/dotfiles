@@ -1,5 +1,5 @@
 execute pathogen#infect()
-set number
+"set number
 set hlsearch
 set numberwidth=3
 syntax on
@@ -38,7 +38,8 @@ nnoremap <C-k> :NERDTreeToggle<CR>
 
 set pastetoggle=<C-o>
 "autocmd Filetype python setlocal ts=8 et sw=4 sts=4
-"colorscheme torte
+
+colorscheme torte
 
 nnoremap <F2> :set nonumber!<CR>
 "nnoremap <C-j> :set invnumber<CR>
@@ -48,3 +49,8 @@ inoremap jk <Esc>
 inoremap jkj <Esc>:w<CR>
 nnoremap ; : 
 
+"" SOLARIZED THEME
+"set background=dark
+"set t_Co=16
+"let g:solarized_termcolors=16
+"colorscheme solarized
