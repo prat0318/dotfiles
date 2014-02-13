@@ -50,7 +50,8 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(ant django extract git git-flow github history-substring-search pip python ruby rvm ssh-agent)
+#plugins=(ant django extract git git-flow github history-substring-search pip python ruby rvm ssh-agent)
+plugins=(extract history-substring-search python ruby ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 source ~/.rvm/scripts/rvm

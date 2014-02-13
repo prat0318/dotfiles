@@ -39,7 +39,7 @@ nnoremap <C-k> :NERDTreeToggle<CR>
 set pastetoggle=<C-o>
 "autocmd Filetype python setlocal ts=8 et sw=4 sts=4
 
-colorscheme torte
+"colorscheme torte
 
 nnoremap <F2> :set nonumber!<CR>
 "nnoremap <C-j> :set invnumber<CR>
