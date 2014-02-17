@@ -4,6 +4,7 @@ alias reload!='. ~/.zshrc'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias version="lsb_release -a"
 
+alias vi="vi -p"
 
 alias pm="python manage.py"
 alias pycharm='cwd=$(pwd);cd ~/setups/pycharm-community-3.0/bin; echo | sh pycharm.sh &; cd $cwd; cwd='
@@ -16,3 +17,5 @@ alias gitator="cd ~/projects/gitator"
 
 alias g++="g++ -std=c++11"
 alias epl="cd ~/projects/epl"
+alias clingo="~/setups/clingo-4.2.1-x86-linux/clingo"
+

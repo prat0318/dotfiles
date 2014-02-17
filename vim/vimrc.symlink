@@ -47,6 +47,7 @@ nnoremap <F2> :set nonumber!<CR>
 
 inoremap jk <Esc>
 inoremap jkj <Esc>:w<CR>
+inoremap jkjk <Esc>:wq<CR>
 nnoremap ; : 
 
 "" SOLARIZED THEME
