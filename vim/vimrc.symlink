@@ -56,4 +56,6 @@ nnoremap ; :
 "let g:solarized_termcolors=16
 "colorscheme solarized
 
-source ~/.local_vimrc
+if filereadable(glob("~/.local_vimrc")) 
+	source ~/.local_vimrc
+endif
