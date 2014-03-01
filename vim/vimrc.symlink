@@ -11,11 +11,22 @@ augroup BWCCreateDir
 augroup END
 
 let NERDTreeMapActivateNode='f'
-let NERDTreeIgnore = ['\.pyc$']
-let g:nerdtree_tabs_open_on_console_startup=1
-let NERDTreeWinSize=18
+let NERDTreeIgnore = ['\.pyc$', '\.out$']
+let g:nerdtree_tabs_open_on_console_startup=0
+let NERDTreeWinSize=28
 
-nnoremap <C-l> :NERDTreeFind<CR>
+"inoremap <C-j> :NERDTreeFind<CR>
+nnoremap <F4> :NERDTreeFind<CR>
+
+"inoremap <C-k> <Esc>:NERDTreeToggle<CR>
+nnoremap <F5> :NERDTreeToggle<CR>
+
+"tab movements"
+inoremap <C-h> <Esc>:tabprevious<CR>
+inoremap <C-l> <Esc>:tabnext<CR>
+
+nnoremap <C-h> :tabprevious<CR>
+nnoremap <C-l> :tabnext<CR>
 
 inoremap <C-Left> <Esc>:tabprevious<CR>
 inoremap <C-Right> <Esc>:tabnext<CR>
@@ -23,6 +34,7 @@ inoremap <C-Right> <Esc>:tabnext<CR>
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 
+"vim split movements
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
@@ -33,10 +45,7 @@ imap <silent> <A-Down> <Esc>:wincmd j<CR>
 imap <silent> <A-Left> <Esc>:wincmd h<CR>
 imap <silent> <A-Right> <Esc>:wincmd l<CR>
 
-inoremap <C-k> <Esc>:NERDTreeToggle<CR>
-nnoremap <C-k> :NERDTreeToggle<CR>
-
-set pastetoggle=<C-o>
+set pastetoggle=<F3>
 "autocmd Filetype python setlocal ts=8 et sw=4 sts=4
 
 "colorscheme torte
@@ -48,8 +57,7 @@ nnoremap <F2> :set nonumber!<CR>
 inoremap jk <Esc>
 inoremap jkj <Esc>:w<CR>
 inoremap jkjk <Esc>:wq<CR>
-nnoremap ; : 
-
+inoremap {{  {<CR>}<Esc>O
 "" SOLARIZED THEME
 "set background=dark
 "set t_Co=16
@@ -59,3 +67,6 @@ nnoremap ; :
 if filereadable(glob("~/.local_vimrc")) 
 	source ~/.local_vimrc
 endif
+
+"Ctrl-P
+"let g:ctrlp_working_path_mode = 'ra' "default

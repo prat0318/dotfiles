@@ -28,6 +28,7 @@
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	ls = ls-files
+	g = grep --break --heading --line-number
 [merge]
 	tool = meld
 [diff]
@@ -40,3 +41,6 @@
 
 [push]
 	default = current
+[grep]
+	extendRegexp = true
+	lineNumber = true
