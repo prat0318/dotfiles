@@ -71,3 +71,4 @@ export ORACLE_HOME=/usr/lib/oracle/xe/app/oracle/product/10.2.0/server
 export ORACLE_SID=XE
 export PATH=$ORACLE_HOME/bin:$PATH
 
+export M2_HOME=/usr/local/apache-maven-3.2.1

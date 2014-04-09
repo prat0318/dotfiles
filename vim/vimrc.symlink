@@ -1,3 +1,5 @@
+let mapleader = "\<Space>"
+
 execute pathogen#infect()
 "set number
 set hlsearch
@@ -5,6 +7,7 @@ set numberwidth=3
 syntax on
 filetype plugin indent on
 
+"Create parent directories on save, if not present
 augroup BWCCreateDir
 	autocmd!
 	autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
@@ -15,10 +18,7 @@ let NERDTreeIgnore = ['\.pyc$', '\.out$']
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeWinSize=28
 
-"inoremap <C-j> :NERDTreeFind<CR>
 nnoremap <F4> :NERDTreeFind<CR>
-
-"inoremap <C-k> <Esc>:NERDTreeToggle<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
 
 "tab movements"
@@ -28,11 +28,8 @@ inoremap <C-l> <Esc>:tabnext<CR>
 nnoremap <C-h> :tabprevious<CR>
 nnoremap <C-l> :tabnext<CR>
 
-inoremap <C-Left> <Esc>:tabprevious<CR>
-inoremap <C-Right> <Esc>:tabnext<CR>
-
-nnoremap <C-Left> :tabprevious<CR>
-nnoremap <C-Right> :tabnext<CR>
+nnoremap <Leader>h :tabprevious<CR>
+nnoremap <Leader>l :tabnext<CR>
 
 "vim split movements
 nmap <silent> <A-Up> :wincmd k<CR>
@@ -58,6 +55,7 @@ inoremap jk <Esc>
 inoremap jkj <Esc>:w<CR>
 inoremap jkjk <Esc>:wq<CR>
 inoremap {{  {<CR>}<Esc>O
+
 "" SOLARIZED THEME
 "set background=dark
 "set t_Co=16
@@ -68,5 +66,64 @@ if filereadable(glob("~/.local_vimrc"))
 	source ~/.local_vimrc
 endif
 
+"Expand visual region settings
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+call expand_region#custom_text_objects({
+      \ "\/\\n\\n\<CR>": 1,
+      \ 'i>' :1,
+      \ 'a>' :1,
+      \ 'a]' :1,
+      \ 'ab' :1,
+      \ 'aB' :1,
+      \ 'ii' :0,
+      \ 'ai' :0,
+      \ })
+
+"match < and > for C++ templates
+:set matchpairs+=<:>
+
+"go back to original point after selection
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
+"map q: for typo
+map q: :q
+
+"map space to leader and define more mappings
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+nmap <Leader>i ^
+nmap <Leader>a $
+
+" Now I can select some text and paste over it without 
+" worrying my paste buffer is
+" replaced by just just removed text
+" vp doesn't replace paste buffer
+function! RestoreRegister()
+  let @" = s:restore_reg
+  return ''
+endfunction
+function! s:Repl()
+  let s:restore_reg = @"
+  return "p@=RestoreRegister()\<cr>"
+endfunction
+vmap <silent> <expr> p <sid>Repl()
+
 "Ctrl-P
-"let g:ctrlp_working_path_mode = 'ra' "default
+nnoremap <Leader>o :CtrlPMixed<CR>
+"" Show MRU files for the current project only
+let g:ctrlp_mruf_relative = 1
+" Open files of vim in new tab
+let g:ctrlp_open_new_file = 't'
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
+

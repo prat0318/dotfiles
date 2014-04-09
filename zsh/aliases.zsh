@@ -19,3 +19,4 @@ alias g++="g++ -std=c++11"
 alias epl="cd ~/projects/epl"
 alias clingo="~/setups/clingo-4.2.1-x86-linux/clingo"
 
+alias l="ls -lahrt"
