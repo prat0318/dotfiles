@@ -29,7 +29,11 @@ NeoBundleCheck
 
 let mapleader = "\<Space>"
 
+"Disable pathogen for now
 "execute pathogen#infect()
+
+"global ymc_conf
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 
 set hlsearch
 set numberwidth=3

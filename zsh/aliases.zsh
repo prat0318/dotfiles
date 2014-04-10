@@ -20,3 +20,4 @@ alias epl="cd ~/projects/epl"
 alias clingo="~/setups/clingo-4.2.1-x86-linux/clingo"
 
 alias l="ls -lahrt"
+alias angry="ssh angry-goat.cs.utexas.edu"
