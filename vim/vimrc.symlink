@@ -17,6 +17,7 @@ NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'Valloric/YouCompleteMe'
 
 call neobundle#end()
 
