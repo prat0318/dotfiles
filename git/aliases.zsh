@@ -10,9 +10,9 @@ fi
 #alias gp='git push origin HEAD'
 alias gp="git pull --rebase origin "
 alias gitrm='git rm `git status | grep deleted | awk '"'"'{print $3}'"'"'`'
-alias gl='git pull --prune'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-alias gd='git diff'
+alias gl='git log -p'
+alias gd='git diff --ignore-all-space --ignore-space-change --ignore-space-at-eol'
 alias gc='git commit'
 alias gca='git commit -a'
 alias gco='git checkout'

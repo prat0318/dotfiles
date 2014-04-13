@@ -20,6 +20,7 @@
 	 
 [alias]
 	st = status
+	l= log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	ci = commit
 	br = branch
 	co = checkout
@@ -30,9 +31,9 @@
 	ls = ls-files
 	g = grep --break --heading --line-number
 [merge]
-	tool = meld
+	tool = vim
 [diff]
-	tool = meld
+	tool = vim
 
 [mergetool]
 	keepBackup = false
