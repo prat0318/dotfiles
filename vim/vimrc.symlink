@@ -40,7 +40,7 @@ let g:ycm_confirm_extra_conf = 0
 "add errors in the location list
 let g:ycm_always_populate_location_list = 1
 "compile c++ code with clang on the spot
-let g:ycm_show_diagnostics_ui = 0
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_auto_trigger = 1
 let g:lt_location_list_toggle_map = '<F6>'
