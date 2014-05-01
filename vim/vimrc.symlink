@@ -34,6 +34,8 @@ let mapleader = "\<Space>"
 "Disable pathogen for now
 "execute pathogen#infect()
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc     " MacOSX/Linux
+
 "global ymc_conf
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 "turn off confirmation message from ycm
@@ -142,9 +144,9 @@ vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
-vmap <Leader>P "+P
 nmap <Leader>i ^
 nmap <Leader>a $
+nmap <Leader>g %
 nmap <Leader>/ /asdfgh<CR>
 
 " Now I can select some text and paste over it without 
@@ -168,7 +170,8 @@ highlight Pmenu ctermbg=brown cterm=bold
 set switchbuf+=usetab,newtab
 
 "Ctrl-P
-nnoremap <Leader>o :CtrlPMixed<CR>
+nnoremap <Leader>o :CtrlPCurWD<CR>
+"nnoremap <Leader>o :CtrlPMixed<CR>
 "" Show MRU files for the current project only
 let g:ctrlp_mruf_relative = 1
 " Open files of vim in new tab
@@ -179,9 +182,14 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 "show git branch on vim footer
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%t%h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P
 set laststatus=2
 highlight statusline cterm=bold ctermbg=black ctermfg=grey 
 
 "Fugitive mappings
 "autocmd QuickFixCmdPost *grep* cwindow
+
+map <Leader>cd :cd %:p:h<CR>
+vmap <Leader>f y:grep -I '<C-R>"' *<CR>
+vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
+vmap <Leader>f y:grep -I '<C-R>"' *<CR>

@@ -30,6 +30,7 @@
 	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	ls = ls-files
 	g = grep --break --heading --line-number
+	grepall = !git grep
 [merge]
 	tool = vim
 [diff]
