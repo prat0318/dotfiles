@@ -195,3 +195,6 @@ map <Leader>cd :cd %:p:h<CR>
 vmap <Leader>f y:grep -I '<C-R>"' *<CR>
 vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
 vmap <Leader>f y:grep -I '<C-R>"' *<CR>
+
+" put a new line after this line
+nnoremap <CR> m`o<Esc>``
