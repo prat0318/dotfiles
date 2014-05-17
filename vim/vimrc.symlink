@@ -18,6 +18,8 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-eunuch'
+NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/ListToggle'
 
