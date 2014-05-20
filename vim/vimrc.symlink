@@ -22,6 +22,7 @@ NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/ListToggle'
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
@@ -105,10 +106,10 @@ inoremap jkjk <Esc>:wq<CR>
 "inoremap {{  {<CR>}<Esc>O
 
 "" SOLARIZED THEME
-"set background=dark
-"set t_Co=16
-"let g:solarized_termcolors=16
-"colorscheme solarized
+set background=dark
+set t_Co=16
+let g:solarized_termcolors=16
+colorscheme solarized
 
 if filereadable(glob("~/.local_vimrc")) 
 	source ~/.local_vimrc
@@ -166,7 +167,7 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 
 "highlight Pmenu color from purple to more visible
-highlight Pmenu ctermbg=brown cterm=bold
+"highlight Pmenu ctermbg=brown cterm=bold
 
 "quick fix menu options
 set switchbuf+=usetab,newtab
@@ -198,3 +199,6 @@ vmap <Leader>f y:grep -I '<C-R>"' *<CR>
 
 " put a new line after this line
 nnoremap <CR> m`o<Esc>``
+
+inoremap <C-j> <Esc>j
+inoremap <C-k> <Esc>k

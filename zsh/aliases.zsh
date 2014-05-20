@@ -4,7 +4,7 @@ alias reload!='. ~/.zshrc'
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias version="lsb_release -a"
 
-alias vi="vi -p"
+alias vi="/nail/home/prateek/bin/vim -p"
 
 alias pm="python manage.py"
 alias pycharm='cwd=$(pwd);cd ~/setups/pycharm-community-3.0/bin; echo | sh pycharm.sh &; cd $cwd; cwd='
