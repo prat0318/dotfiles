@@ -15,6 +15,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " My Bundles here:
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-fugitive'
@@ -198,7 +199,9 @@ vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
 vmap <Leader>f y:grep -I '<C-R>"' *<CR>
 
 " put a new line after this line
-nnoremap <CR> m`o<Esc>``
+nnoremap <Leader><CR> m`o<Esc>``
 
 inoremap <C-j> <Esc>j
 inoremap <C-k> <Esc>k
+
+let g:syntastic_python_checkers = ['pyflakes']

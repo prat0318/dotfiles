@@ -2,7 +2,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 #plugins=(ant django extract git git-flow github history-substring-search pip python ruby rvm ssh-agent)
-plugins=(extract history-substring-search python ssh-agent vi-mode dirpersist)
+plugins=(extract history-substring-search python vi-mode dirpersist)
 
 source $ZSH/oh-my-zsh.sh
 #source ~/.rvm/scripts/rvm
@@ -23,3 +23,14 @@ export ORACLE_SID=XE
 export PATH=$ORACLE_HOME/bin:$PATH
 
 export M2_HOME=/usr/local/apache-maven-3.2.1
+
+# SPECIFICALLY FOR TESTIFY
+# --------------------------
+# COMPLETION SETTINGS
+# add custom completion scripts
+fpath=(~/completions $fpath) 
+ 
+# compsys initialization
+autoload -U compinit
+compinit
+#---------------------------

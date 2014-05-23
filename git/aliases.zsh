@@ -8,7 +8,8 @@ fi
 
 # The rest of my fun git aliases
 #alias gp='git push origin HEAD'
-alias gp="git pull --rebase origin "
+alias gpm="git pull-master"
+alias gp="git pull --rebase canon "
 alias gitrm='git rm `git status | grep deleted | awk '"'"'{print $3}'"'"'`'
 alias glog="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gl='git log -p'

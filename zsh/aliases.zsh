@@ -12,12 +12,7 @@ alias pycharm='cwd=$(pwd);cd ~/setups/pycharm-community-3.0/bin; echo | sh pycha
 alias idea="/home/prat0318/setups/idea-IC-133.193/bin/idea.sh"
 
 alias projects="cd ~/projects"
-alias epl="cd ~/projects/epl"
 alias gitator="cd ~/projects/gitator"
-
-alias g++="g++ -std=c++11"
-alias epl="cd ~/projects/epl"
-alias clingo="~/setups/clingo-4.2.1-x86-linux/clingo"
 
 alias l="ls -lAhrt"
 alias ll="ls -lhrt"

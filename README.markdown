@@ -1,3 +1,6 @@
+script/bootstrap
+----------------
+
 # holman does dotfiles
 
 ## dotfiles
