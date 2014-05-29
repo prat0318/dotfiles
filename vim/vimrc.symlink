@@ -205,3 +205,6 @@ inoremap <C-j> <Esc>j
 inoremap <C-k> <Esc>k
 
 let g:syntastic_python_checkers = ['pyflakes']
+
+"Specific to mac with ssh session (delete key)
+set backspace=indent,eol,start
