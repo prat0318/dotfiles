@@ -96,13 +96,10 @@ set pastetoggle=<F3>
 "colorscheme torte
 
 nnoremap <F2> :set nonumber!<CR>
-"nnoremap <C-j> :set invnumber<CR>
-"inoremap <C-j> <Esc>:set invnumber<CR>
 
 inoremap jk <Esc>
-inoremap jkj <Esc>:w<CR>
-inoremap jkjk <Esc>:wq<CR>
-"inoremap {{  {<CR>}<Esc>O
+"inoremap jkj <Esc>:w<CR>
+"inoremap jkjk <Esc>:wq<CR>
 
 "" SOLARIZED THEME
 "set background=dark
@@ -120,8 +117,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 call expand_region#custom_text_objects({
       \ "\/\\n\\n\<CR>": 1,
-      \ 'i>' :1,
-      \ 'a>' :1,
+      \ "a'" :1,
       \ 'a]' :1,
       \ 'ab' :1,
       \ 'aB' :1,
@@ -197,4 +193,9 @@ vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
 vmap <Leader>f y:grep -I '<C-R>"' *<CR>
 
 " put a new line after this line
-nnoremap <CR> m`o<Esc>``
+nnoremap <Leader><CR> m`o<Esc>``
+
+" Search highlighted
+:vmap * y/<C-R>"<CR>
+" Pull Visually Highlighted text into LHS of a substitute
+:vmap <leader>s :<C-U>%s/\<<c-r>*\>/
