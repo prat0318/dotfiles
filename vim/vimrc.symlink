@@ -19,7 +19,6 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/ListToggle'
@@ -102,8 +101,7 @@ nnoremap <F2> :set nonumber!<CR>
 "inoremap <C-j> <Esc>:set invnumber<CR>
 
 inoremap jk <Esc>
-inoremap jkj <Esc>:w<CR>
-inoremap jkjk <Esc>:wq<CR>
+inoremap jkf <Esc>:w<CR>
 "inoremap {{  {<CR>}<Esc>O
 
 "" SOLARIZED THEME
@@ -122,8 +120,8 @@ vmap <C-v> <Plug>(expand_region_shrink)
 
 call expand_region#custom_text_objects({
       \ "\/\\n\\n\<CR>": 1,
-      \ 'i>' :1,
-      \ 'a>' :1,
+      \ "a'" :1,
+      \ 'a"' :1,
       \ 'a]' :1,
       \ 'ab' :1,
       \ 'aB' :1,
@@ -151,6 +149,8 @@ vmap <Leader>p "+p
 nmap <Leader>i ^
 nmap <Leader>a $
 nmap <Leader>g %
+vmap <Leader>a $h
+vmap <Leader>g %
 nmap <Leader>/ /asdfgh<CR>
 
 " Now I can select some text and paste over it without 
@@ -186,7 +186,7 @@ let g:ctrlp_prompt_mappings = {
     \ }
 
 "show git branch on vim footer
-set statusline=%t%h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P
+set statusline=%F%h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P
 set laststatus=2
 highlight statusline cterm=bold ctermbg=black ctermfg=grey 
 
@@ -204,7 +204,27 @@ nnoremap <Leader><CR> m`o<Esc>``
 inoremap <C-j> <Esc>j
 inoremap <C-k> <Esc>k
 
-let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_python_pep8_args='--ignore=W191'
 
 "Specific to mac with ssh session (delete key)
 set backspace=indent,eol,start
+
+"Close Scratch buffer on move in insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+
+" Pull Visually Highlighted text into LHS of a substitute
+:vnoremap <leader>s "hy:%s/\<<C-r>h\>/
+" Search highlighted
+:vmap * y/<C-R>"<CR>
+
+" Search highlighted
+:vmap * y/<C-R>"<CR>
+" Pull Visually Highlighted text into LHS of a substitute
+:vmap <leader>s y:<C-U>%s/\<<C-R>"\>/
+" Pull clipboard text into LHS of a substitute
+:vmap <leader>xs :<C-U>%s/\<<c-r>*\>/
+
+"make < > shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
