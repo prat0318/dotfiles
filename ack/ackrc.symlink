@@ -6,6 +6,8 @@ cheetah=.tmpl
 --type-set
 sass=.scss,.sass
 
+--type-set
+json=.json
 # Don't search the build directory
 --ignore-dir
 build

@@ -225,6 +225,6 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 " Pull clipboard text into LHS of a substitute
 :vmap <leader>xs :<C-U>%s/\<<c-r>*\>/
 
-"make < > shifts keep selection
-vnoremap < <gv
-vnoremap > >gv
+" Python tab setting for all
+autocmd BufEnter * set ai sw=4 ts=4 sta et fo=croql
+set softtabstop=4 " makes the spaces feel like real tabs

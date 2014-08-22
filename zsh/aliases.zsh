@@ -5,6 +5,7 @@ alias reload!='. ~/.zshrc'
 alias version="lsb_release -a"
 
 alias vi="/nail/home/prateek/bin/vim -p"
+alias vim="/nail/home/prateek/bin/vim -p"
 
 alias pm="python manage.py"
 alias pycharm='cwd=$(pwd);cd ~/setups/pycharm-community-3.0/bin; echo | sh pycharm.sh &; cd $cwd; cwd='
