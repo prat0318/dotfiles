@@ -16,12 +16,13 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'terryma/vim-expand-region'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-eunuch'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/ListToggle'
+NeoBundle 'altercation/vim-colors-solarized'
 
 call neobundle#end()
 
@@ -92,8 +93,12 @@ imap <silent> <A-Right> <Esc>:wincmd l<CR>
 
 set pastetoggle=<F3>
 "autocmd Filetype python setlocal ts=8 et sw=4 sts=4
-
-"colorscheme torte
+" Python tab setting for all
+" autocmd BufEnter * set ai sw=4 ts=4 sta et fo=croql
+autocmd Filetype python setlocal ai sw=4 ts=4 sta et fo=croql
+autocmd Filetype ruby setlocal ai sw=2 ts=2 sta et fo=croql
+"set softtabstop=4 " makes the spaces feel like real tabs
+set tabpagemax=100
 
 nnoremap <F2> :set nonumber!<CR>
 
@@ -102,10 +107,10 @@ inoremap jk <Esc>
 "inoremap jkjk <Esc>:wq<CR>
 
 "" SOLARIZED THEME
-"set background=dark
-"set t_Co=16
-"let g:solarized_termcolors=16
-"colorscheme solarized
+set background=dark
+set t_Co=16
+let g:solarized_termcolors=16
+colorscheme solarized
 
 if filereadable(glob("~/.local_vimrc")) 
 	source ~/.local_vimrc
@@ -118,6 +123,7 @@ vmap <C-v> <Plug>(expand_region_shrink)
 call expand_region#custom_text_objects({
       \ "\/\\n\\n\<CR>": 1,
       \ "a'" :1,
+      \ 'a"' :1,
       \ 'a]' :1,
       \ 'ab' :1,
       \ 'aB' :1,
@@ -146,6 +152,8 @@ nmap <Leader>i ^
 nmap <Leader>a $
 nmap <Leader>g %
 nmap <Leader>/ /asdfgh<CR>
+vmap <Leader>a $h
+vmap <Leader>g %
 
 " Now I can select some text and paste over it without 
 " worrying my paste buffer is
@@ -162,7 +170,7 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 
 "highlight Pmenu color from purple to more visible
-highlight Pmenu ctermbg=brown cterm=bold
+"highlight Pmenu ctermbg=brown cterm=bold
 
 "quick fix menu options
 set switchbuf+=usetab,newtab
@@ -199,3 +207,14 @@ nnoremap <Leader><CR> m`o<Esc>``
 :vmap * y/<C-R>"<CR>
 " Pull Visually Highlighted text into LHS of a substitute
 :vmap <leader>s :<C-U>%s/\<<c-r>*\>/
+" Pull clipboard text into LHS of a substitute
+:vmap <leader>xs :<C-U>%s/\<<c-r>*\>/
+
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_python_pep8_args='--ignore=W191'
+
+"Specific to mac with ssh session (delete key)
+set backspace=indent,eol,start
+
+"Close Scratch buffer on move in insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
