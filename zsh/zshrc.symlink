@@ -46,3 +46,6 @@ ZSH_THEME="robbyrussell"
 source $ZSH/oh-my-zsh.sh
 cd pg; source mypy/bin/activate
 clear
+
+PERL_MB_OPT="--install_base \"/u/prat0318/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/u/prat0318/perl5"; export PERL_MM_OPT;

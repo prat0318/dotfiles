@@ -2,7 +2,7 @@ ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
 #plugins=(ant django extract git git-flow github history-substring-search pip python ruby rvm ssh-agent)
-plugins=(extract history-substring-search python vi-mode dirpersist)
+plugins=(extract history-substring-search python vi-mode dirpersist ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 #source ~/.rvm/scripts/rvm
@@ -19,6 +19,7 @@ export MODE=local
 
 export CLASSPATH=.:$CLASSPATH
 export M2_HOME=/usr/local/apache-maven-3.2.1
+export PYTHONPATH=/usr/lib/python2.7/dist-packages/:$PYTHONPATH
 
 # SPECIFICALLY FOR TESTIFY
 # --------------------------

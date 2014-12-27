@@ -228,3 +228,4 @@ autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
 " Python tab setting for all
 autocmd BufEnter * set ai sw=4 ts=4 sta et fo=croql
 set softtabstop=4 " makes the spaces feel like real tabs
+set tabpagemax=100
