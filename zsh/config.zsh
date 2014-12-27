@@ -1,19 +1,24 @@
-ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+fpath=($ZSH/functions $fpath)
+autoload -U $ZSH/functions/*(:t)
 
-#plugins=(ant django extract git git-flow github history-substring-search pip python ruby ssh-agent)
-plugins=(extract history-substring-search python ruby ssh-agent vi-mode dirpersist)
+#plugins=(ant django extract git git-flow github history-substring-search pip python ruby ssh-agent dirpersist)
+plugins=(vi-mode extract history-substring-search python ruby ssh-agent osx copyfile gitignore)
 
-source $ZSH/oh-my-zsh.sh
 source ~/.rvm/scripts/rvm
 export RUBYOPT="-I ."
 
-export PATH=$PATH:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/prat0318/.rvm/bin:/home/prat0318/setups/sbt/bin
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
 export JAVA_HOME=/usr/lib/jvm/default-java
 
 export CLASSPATH=.:$CLASSPATH
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PYTHONPATH=/usr/lib/python2.7/dist-packages/:$PYTHONPATH
 
-export M2_HOME=/usr/local/apache-maven-3.2.1
+# SPECIFICALLY FOR TESTIFY
+# --------------------------
+# COMPLETION SETTINGS
+# add custom completion scripts
+## fpath=(~/completions $fpath)
+#---------------------------
+
+export PATH="/nail/home/prateek/bin:$PATH"

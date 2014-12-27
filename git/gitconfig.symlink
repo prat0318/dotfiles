@@ -31,6 +31,10 @@
 	ls = ls-files
 	g = grep --break --heading --line-number
 	grepall = !git grep
+	edit-unmerged = \
+	             "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; vim `f`"
+	 add-unmerged = \
+	             "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 [merge]
 	tool = vim
 [diff]
@@ -46,3 +50,5 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+[credential]
+       helper = cache
