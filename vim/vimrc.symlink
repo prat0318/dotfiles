@@ -33,90 +33,87 @@ filetype plugin indent on
 NeoBundleCheck
 
 let mapleader = "\<Space>"
-
-"Disable pathogen for now
-"execute pathogen#infect()
+syntax on
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc     " MacOSX/Linux
 
-"global ymc_conf
+"global ycm_conf {
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-"turn off confirmation message from ycm
-let g:ycm_confirm_extra_conf = 0
-"add errors in the location list
-let g:ycm_always_populate_location_list = 1
-"compile c++ code with clang on the spot
-let g:ycm_show_diagnostics_ui = 1
+let g:ycm_confirm_extra_conf = 0 "turn off confirmation message from ycm
+let g:ycm_always_populate_location_list = 1 "add errors in the location list
+let g:ycm_show_diagnostics_ui = 1 "compile c++ code with clang on the spot
 let g:ycm_min_num_of_chars_for_completion = 2
 let g:ycm_auto_trigger = 1
+
+"Close Scratch buffer on move/close from insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+" }
+
+" quick fix shortcuts {
 let g:lt_location_list_toggle_map = '<F6>'
 let g:lt_quickfix_list_toggle_map = '<F8>'
+set switchbuf+=usetab,newtab "quick fix menu options
+" }
 
-set hlsearch
-set numberwidth=3
-syntax on
+" syntastic config {
+let g:syntastic_python_checkers = ['pyflakes', 'pep8']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_python_pep8_args='--ignore=W191'
+let g:syntastic_always_populate_loc_list = 1
+" }
 
-"Create parent directories on save, if not present
-augroup BWCCreateDir
-	autocmd!
-	autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
-augroup END
+" Fugitive mappings
+"autocmd QuickFixCmdPost *grep* cwindow
 
+" NerdTree settings {
 let NERDTreeMapActivateNode='f'
 let NERDTreeIgnore = ['\.pyc$', '\.out$']
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeWinSize=28
-
 nnoremap <F4> :NERDTreeFind<CR>
 nnoremap <F5> :NERDTreeToggle<CR>
+" }
 
-"tab movements"
-inoremap <C-h> <Esc>:tabprevious<CR>
-inoremap <C-l> <Esc>:tabnext<CR>
-
-nnoremap <C-h> :tabprevious<CR>
-nnoremap <C-l> :tabnext<CR>
-
-nnoremap <Leader>h :tabprevious<CR>
-nnoremap <Leader>l :tabnext<CR>
-
-"vim split movements
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-
-imap <silent> <A-Up> <Esc>:wincmd k<CR>
-imap <silent> <A-Down> <Esc>:wincmd j<CR>
-imap <silent> <A-Left> <Esc>:wincmd h<CR>
-imap <silent> <A-Right> <Esc>:wincmd l<CR>
-
+" General VIM setting {
+set hlsearch
+set ignorecase "ignore case
+set numberwidth=3 "Col width when printing line nos.
+set shortmess+=IA "no intro message, no swap-file message
 set pastetoggle=<F3>
-"autocmd Filetype python setlocal ts=8 et sw=4 sts=4
-" Python tab setting for all
-" autocmd BufEnter * set ai sw=4 ts=4 sta et fo=croql
-autocmd Filetype python setlocal ai sw=4 ts=4 sta et fo=croql
-autocmd Filetype ruby setlocal ai sw=2 ts=2 sta et fo=croql
-"set softtabstop=4 " makes the spaces feel like real tabs
 set tabpagemax=100
-
 nnoremap <F2> :set nonumber!<CR>
-
 inoremap jk <Esc>
-"inoremap jkj <Esc>:w<CR>
-"inoremap jkjk <Esc>:wq<CR>
+vnoremap <silent> y y`]| "go back to original point after selection
+set matchpairs+=<:> "match < and > for C++ templates
+set backspace=indent,eol,start "Specific to mac with ssh session (delete key)
+imap <C-v> "+p| "Auto :set paste during paste
+" }
 
-"" SOLARIZED THEME
+" Tab movements {
+inoremap <C-h> <Esc>:tabprevious<CR>
+nnoremap <C-h> :tabprevious<CR>
+nnoremap <Leader>h :tabprevious<CR>
+
+inoremap <C-l> <Esc>:tabnext<CR>
+nnoremap <C-l> :tabnext<CR>
+nnoremap <Leader>l :tabnext<CR>
+" }
+
+" Indent setting for all {
+set ai sta et fo=croql
+autocmd Filetype python setlocal shiftwidth=4 softtabstop=4
+autocmd Filetype ruby setlocal shiftwidth=2 softtabstop=2
+" }
+
+"" SOLARIZED THEME {
 set background=dark
 set t_Co=16
 let g:solarized_termcolors=16
 colorscheme solarized
+" }
 
-if filereadable(glob("~/.local_vimrc")) 
-	source ~/.local_vimrc
-endif
-
-"Expand visual region settings
+"Expand visual region settings {
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
@@ -130,52 +127,47 @@ call expand_region#custom_text_objects({
       \ 'ii' :0,
       \ 'ai' :0,
       \ })
+" }
 
-"match < and > for C++ templates
-set matchpairs+=<:>
-
-"go back to original point after selection
-vnoremap <silent> y y`]
-vnoremap <silent> p p`]
-nnoremap <silent> p p`]
-
-"map q: for typo
-map q: :q
-
-"map space to leader and define more mappings
+" map space to leader and define more mappings {
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
-nmap <Leader>P "+P
 vmap <Leader>p "+p
+nmap <Leader>P "+P
 nmap <Leader>i ^
 nmap <Leader>a $
+vmap <Leader>a $h| "h is to shift left one character
 nmap <Leader>g %
-nmap <Leader>/ /asdfgh<CR>
-vmap <Leader>a $h
 vmap <Leader>g %
+nmap <Leader>/ /asdfgh<CR>
+map <Leader>cd :cd %:p:h<CR>
+vmap <Leader>f y:grep -Ir '<C-R>"' *<CR>
+vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
+nnoremap <Leader><CR> m`o<Esc>``| " put a new line after this line
+:vmap * y/<C-R>"<CR>| " Search highlighted
+:vmap <leader>s :<C-U>%s/\<<c-r>*\>/| " Pull Visually Hghlghtd text to LHS of a substitute
+:vmap <leader>xs :<C-U>%s/\<<c-r>*\>/| " Pull clipboard text to LHS of a substitute
+" }
 
-" Now I can select some text and paste over it without 
-" worrying my paste buffer is
-" replaced by just just removed text
-" vp doesn't replace paste buffer
+" NOT NEEDED: vnoremap <silent> p p`]
+" Now I can select some text and paste over it without worrying my paste buffer is
+" replaced by just just removed text. Now, vp doesn't replace paste buffer {
 function! RestoreRegister()
   let @" = s:restore_reg
   return ''
 endfunction
 function! s:Repl()
   let s:restore_reg = @"
-  return "p@=RestoreRegister()\<cr>"
+  return "p@=RestoreRegister()\<cr>`]"
 endfunction
 vmap <silent> <expr> p <sid>Repl()
+" }
 
-"highlight Pmenu color from purple to more visible
+"terminator: highlight Pmenu color from purple to more visible
 "highlight Pmenu ctermbg=brown cterm=bold
 
-"quick fix menu options
-set switchbuf+=usetab,newtab
-
-"Ctrl-P
+"Ctrl-P {
 nnoremap <Leader>o :CtrlPCurWD<CR>
 "nnoremap <Leader>o :CtrlPMixed<CR>
 "" Show MRU files for the current project only
@@ -186,35 +178,19 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>'],
     \ }
+" }
 
-"show git branch on vim footer
-set statusline=%t%h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P
+" Statusline {
+set statusline=%t%h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P "show git branch
 set laststatus=2
 highlight statusline cterm=bold ctermbg=black ctermfg=grey 
+" }
 
-"Fugitive mappings
-"autocmd QuickFixCmdPost *grep* cwindow
+" Quickly edit/reload the vimrc file {
+nmap <silent> <leader>ev :tabe $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" }
 
-map <Leader>cd :cd %:p:h<CR>
-vmap <Leader>f y:grep -I '<C-R>"' *<CR>
-vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
-vmap <Leader>f y:grep -I '<C-R>"' *<CR>
-
-" put a new line after this line
-nnoremap <Leader><CR> m`o<Esc>``
-
-" Search highlighted
-:vmap * y/<C-R>"<CR>
-" Pull Visually Highlighted text into LHS of a substitute
-:vmap <leader>s :<C-U>%s/\<<c-r>*\>/
-" Pull clipboard text into LHS of a substitute
-:vmap <leader>xs :<C-U>%s/\<<c-r>*\>/
-
-let g:syntastic_python_checkers = ['pyflakes', 'pep8']
-let g:syntastic_python_pep8_args='--ignore=W191'
-
-"Specific to mac with ssh session (delete key)
-set backspace=indent,eol,start
-
-"Close Scratch buffer on move in insert mode
-autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+if filereadable(glob("~/.local_vimrc")) 
+	source ~/.local_vimrc
+endif
