@@ -30,20 +30,20 @@ git_dirty() {
 
 git_prompt_info () {
  ref=$($git symbolic-ref HEAD 2>/dev/null) || return
-# echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
+ echo "(%{\e[0;33m%}${ref#refs/heads/}%{\e[0m%})"
  echo "${ref#refs/heads/}"
 }
 
 unpushed () {
-  $git cherry -v @{upstream} 2>/dev/null
+  $git cherry -v origin 2>/dev/null
 }
 
 need_push () {
   if [[ $(unpushed) == "" ]]
   then
-    echo " "
+    echo ""
   else
-    echo " with %{$fg_bold[magenta]%}unpushed%{$reset_color%} "
+    echo "%{$fg_bold[magenta]%}U%{$reset_color%}"
   fi
 }
 
@@ -62,7 +62,7 @@ ruby_version() {
 rb_prompt() {
   if ! [[ -z "$(ruby_version)" ]]
   then
-    echo "%{$fg_bold[yellow]%}$(ruby_version)%{$reset_color%} "
+    echo "%{$fg_bold[yellow]%}($(ruby_version))%{$reset_color%}"
   else
     echo ""
   fi
@@ -72,9 +72,9 @@ directory_name() {
   echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
 }
 
-export PROMPT=$'\n$(rb_prompt)in $(directory_name) $(git_dirty)$(need_push)\n› '
+# To be put in themes/robyrussell.theme
+# PROMPT='$(rb_prompt)... # for rb env
 set_prompt () {
-  export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
   export RPROMPT='[%*]'
 }
 

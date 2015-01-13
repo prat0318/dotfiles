@@ -83,7 +83,7 @@ set shortmess+=IA "no intro message, no swap-file message
 set pastetoggle=<F3>
 set tabpagemax=100
 nnoremap <F2> :set nonumber!<CR>
-inoremap jk <Esc>
+inoremap jk <Esc>l| "try to shift right one char to go back to same place
 vnoremap <silent> y y`]| "go back to original point after selection
 set matchpairs+=<:> "match < and > for C++ templates
 set backspace=indent,eol,start "Specific to mac with ssh session (delete key)
@@ -102,6 +102,7 @@ nnoremap <Leader>l :tabnext<CR>
 
 " Indent setting for all {
 set ai sta et fo=croql
+set shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal shiftwidth=4 softtabstop=4
 autocmd Filetype ruby setlocal shiftwidth=2 softtabstop=2
 " }
