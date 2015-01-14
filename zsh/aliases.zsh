@@ -1,4 +1,4 @@
-alias reload!='. ~/.zshrc'
+alias reload!='exec zsh'   # alias reload!='. ~/.zshrc'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
