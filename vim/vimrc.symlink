@@ -71,8 +71,8 @@ let NERDTreeMapActivateNode='f'
 let NERDTreeIgnore = ['\.pyc$', '\.out$']
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeWinSize=28
-nnoremap <F4> :NERDTreeFind<CR>
-nnoremap <F5> :NERDTreeToggle<CR>
+nnoremap <F3> :NERDTreeFind<CR>
+nnoremap <F4> :NERDTreeToggle<CR>
 " }
 
 " General VIM setting {
@@ -80,8 +80,9 @@ set hlsearch
 set ignorecase "ignore case
 set numberwidth=3 "Col width when printing line nos.
 set shortmess+=IA "no intro message, no swap-file message
-set pastetoggle=<F3>
+" set pastetoggle=<F3>
 set tabpagemax=100
+set vb t_vb= " set silent (no beep)
 nnoremap <F2> :set nonumber!<CR>
 inoremap jk <Esc>l| "try to shift right one char to go back to same place
 vnoremap <silent> y y`]| "go back to original point after selection
@@ -147,8 +148,8 @@ vmap <Leader>f y:grep -Ir '<C-R>"' *<CR>
 vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
 nnoremap <Leader><CR> m`o<Esc>``| " put a new line after this line
 :vmap * y/<C-R>"<CR>| " Search highlighted
-:vmap <leader>s :<C-U>%s/\<<c-r>*\>/| " Pull Visually Hghlghtd text to LHS of a substitute
-:vmap <leader>xs :<C-U>%s/\<<c-r>*\>/| " Pull clipboard text to LHS of a substitute
+:vmap <leader>s y:<C-U>%s/\<<c-r>"\>/| " Pull Visually Hghlghtd text to LHS of a substitute
+:nnoremap <leader>s :<C-U>%s/\<<c-r>*\>/| " Pull clipboard text to LHS of a substitute
 " }
 
 " NOT NEEDED: vnoremap <silent> p p`]
