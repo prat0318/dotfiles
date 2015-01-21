@@ -4,7 +4,9 @@ autoload -U $ZSH/functions/*(:t)
 #plugins=(ant django extract git git-flow github history-substring-search pip python ruby ssh-agent dirpersist)
 plugins=(vi-mode extract history-substring-search python ruby ssh-agent osx copyfile gitignore)
 
-source ~/.rvm/scripts/rvm
+if [ -f ~/.rvm/scripts/rvm ]; then
+    source ~/.rvm/scripts/rvm
+fi
 export RUBYOPT="-I ."
 
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
@@ -20,8 +22,6 @@ export PYTHONPATH=/usr/lib/python2.7/dist-packages/:$PYTHONPATH
 # add custom completion scripts
 ## fpath=(~/completions $fpath)
 #---------------------------
-
-export PATH="/nail/home/prateek/bin:$PATH"
 
 function options() {
     PLUGIN_PATH="$HOME/.oh-my-zsh/plugins/"
