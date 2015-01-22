@@ -51,7 +51,7 @@ autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 " }
 
 " quick fix shortcuts {
-let g:lt_location_list_toggle_map = '<F6>'
+let g:lt_location_list_toggle_map = '<F7>'
 let g:lt_quickfix_list_toggle_map = '<F8>'
 set switchbuf+=usetab,newtab "quick fix menu options
 " }
@@ -83,7 +83,7 @@ set shortmess+=IA "no intro message, no swap-file message
 " set pastetoggle=<F3>
 set tabpagemax=100
 set vb t_vb= " set silent (no beep)
-nnoremap <F2> :set nonumber!<CR>
+" nnoremap <F2> :set nonumber!<CR>
 inoremap jk <Esc>l| "try to shift right one char to go back to same place
 vnoremap <silent> y y`]| "go back to original point after selection
 set matchpairs+=<:> "match < and > for C++ templates
