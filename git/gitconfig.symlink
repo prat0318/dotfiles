@@ -10,6 +10,7 @@
 	merge = refs/heads/master
 	 
 [color]
+        grep = auto
 	ui = auto
 	diff = auto
 	status = auto
@@ -52,3 +53,5 @@
 	lineNumber = true
 [credential]
        helper = cache
+[pager]
+      grep = false
