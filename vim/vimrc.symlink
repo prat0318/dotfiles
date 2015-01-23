@@ -89,6 +89,7 @@ vnoremap <silent> y y`]| "go back to original point after selection
 set matchpairs+=<:> "match < and > for C++ templates
 set backspace=indent,eol,start "Specific to mac with ssh session (delete key)
 imap <C-v> "+p| "Auto :set paste during paste
+set pastetoggle=<F2>
 " }
 
 " Tab movements {
@@ -131,18 +132,21 @@ call expand_region#custom_text_objects({
       \ })
 " }
 
-" map space to leader and define more mappings {
+" To be removed...
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
 vmap <Leader>p "+p
 nmap <Leader>P "+P
+" ... till here.
+
+" map space to leader and define more mappings {
 nmap <Leader>i ^
 nmap <Leader>a $
 vmap <Leader>a $h| "h is to shift left one character
 nmap <Leader>g %
 vmap <Leader>g %
-nmap <Leader>/ /asdfgh<CR>
+nmap <Leader>/ y:noh<CR>
 map <Leader>cd :cd %:p:h<CR>
 vmap <Leader>f y:grep -Ir '<C-R>"' *<CR>
 vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
