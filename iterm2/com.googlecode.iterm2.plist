@@ -423,10 +423,21 @@
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
+	<key>NSToolbar Configuration Terminal Toolbar</key>
+	<dict>
+		<key>TB Display Mode</key>
+		<integer>1</integer>
+		<key>TB Icon Size Mode</key>
+		<integer>1</integer>
+		<key>TB Is Shown</key>
+		<integer>0</integer>
+		<key>TB Size Mode</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>-1160 228 924 485 -1920 -180 1920 1058 </string>
+	<string>576 -65 924 485 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>-1913 -168 1866 1046 -1920 -180 1920 1058 </string>
+	<string>4 22 1430 856 0 0 1440 878 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1000,20 +1011,20 @@
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.56363654136657715</real>
+				<real>0.12157098203897476</real>
 				<key>Green Component</key>
-				<real>0.56485837697982788</real>
+				<real>0.12157098203897476</real>
 				<key>Red Component</key>
-				<real>0.50599193572998047</real>
+				<real>0.10956397652626038</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.19370138645172119</real>
+				<real>0.0041741803288459778</real>
 				<key>Green Component</key>
-				<real>0.15575926005840302</real>
+				<real>0.53041970729827881</real>
 				<key>Red Component</key>
-				<real>0.0</real>
+				<real>0.60965782403945923</real>
 			</dict>
 			<key>Semantic History</key>
 			<dict>
@@ -1217,7 +1228,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-01-31T22:23:24Z</date>
+	<date>2015-05-19T18:43:30Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
