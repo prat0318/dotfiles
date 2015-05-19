@@ -214,6 +214,17 @@ autocmd Syntax c,cpp,json,html setlocal foldmethod=syntax
 nnoremap <space>z za
 " }
 
+" Highlight trailing whitespaches {
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+" }
+
+set colorcolumn=80
+
 if filereadable(glob("~/.local_vimrc")) 
 	source ~/.local_vimrc
 endif
