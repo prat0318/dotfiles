@@ -16,7 +16,7 @@ export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export JAVA_HOME=/usr/lib/jvm/default-java
 
 export CLASSPATH=.:$CLASSPATH
-export PYTHONPATH=/usr/lib/python2.7/dist-packages/:$PYTHONPATH
+# export PYTHONPATH=/usr/lib/python2.7/dist-packages/:$PYTHONPATH
 
 # SPECIFICALLY FOR TESTIFY
 # --------------------------

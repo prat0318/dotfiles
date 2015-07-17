@@ -137,3 +137,7 @@ fi
 
 echo ''
 echo '  All installed!'
+
+echo ' Creating ~/.vim/swp directory...'
+mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo
+echo ' Done.'

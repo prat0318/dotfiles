@@ -58,7 +58,7 @@ set switchbuf+=usetab,newtab "quick fix menu options
 " }
 
 " syntastic config {
-let g:syntastic_python_checkers = ['pyflakes', 'flake8']
+let g:syntastic_python_checkers = ['flake8']
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 let g:syntastic_json_checkers = ['jsonlint']
 let g:syntastic_python_pep8_args='--ignore=W191'
@@ -102,11 +102,11 @@ au BufRead,BufNewFile *.yaml set filetype=yaml
 " Tab movements {
 inoremap <C-h> <Esc>:tabprevious<CR>
 nnoremap <C-h> :tabprevious<CR>
-nnoremap <Leader>h :tabprevious<CR>
+nnoremap <Leader>h :execute "tabmove" tabpagenr() - 2 <CR>
 
 inoremap <C-l> <Esc>:tabnext<CR>
 nnoremap <C-l> :tabnext<CR>
-nnoremap <Leader>l :tabnext<CR>
+nnoremap <Leader>l :execute "tabmove" tabpagenr() <CR>
 " }
 
 " Indent setting for all {
@@ -205,6 +205,10 @@ nmap <silent> <leader>ev :tabe $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 " }
 
+" Quickly view the pwd {
+nmap <silent> <leader>pwd :echo @%<CR>
+" }
+
 " Set vim folds {
 set foldmethod=indent   "fold based on indent
 set foldnestmax=5      "deepest fold is 5 levels
@@ -223,8 +227,15 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 " }
 
+" .swp message is absent cuz of: shortmess+=A
+" Keep all swp files in ~/.vim {
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
+" }
+
 set colorcolumn=80
 
-if filereadable(glob("~/.local_vimrc")) 
+if filereadable(glob("~/.local_vimrc"))
 	source ~/.local_vimrc
 endif
