@@ -2,9 +2,7 @@ fpath=($ZSH/functions $fpath)
 autoload -U $ZSH/functions/*(:t)
 
 #plugins=(ant django extract git git-flow github history-substring-search pip python ruby ssh-agent dirpersist)
-plugins=(vi-mode extract history-substring-search pip python copyfile gitignore dirpersist)
-# for mac
-plugins+=(ruby ssh-agent osx)
+plugins=(vi-mode extract history-substring-search pip python copyfile gitignore dirpersist ssh-agent)
 
 if [ -f ~/.rvm/scripts/rvm ]; then
     source ~/.rvm/scripts/rvm
@@ -17,13 +15,6 @@ export JAVA_HOME=/usr/lib/jvm/default-java
 
 export CLASSPATH=.:$CLASSPATH
 export PYTHONPATH=/usr/lib/python2.7/dist-packages/:$PYTHONPATH
-
-# SPECIFICALLY FOR TESTIFY
-# --------------------------
-# COMPLETION SETTINGS
-# add custom completion scripts
-## fpath=(~/completions $fpath)
-#---------------------------
 
 function options() {
     PLUGIN_PATH="$HOME/.oh-my-zsh/plugins/"

@@ -6,3 +6,5 @@ alias l=" ls -lAhrt"
 alias cd=" cd"
 # alias pm="python manage.py"
 
+alias vimswap='find ./ -type f -name "\.*sw[klmnop]"'
+alias vimclean='find ./ -type f -name "\.*sw[klmnop]" -delete'
