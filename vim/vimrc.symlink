@@ -79,6 +79,8 @@ nnoremap <F4> :NERDTreeToggle<CR>
 
 " General VIM setting {
 set hlsearch
+set cursorline " highlight current line
+set wildmenu   " visual autocomplete for command menu
 set ignorecase "ignore case
 set numberwidth=3 "Col width when printing line nos.
 set shortmess+=IA "no intro message, no swap-file message
@@ -114,6 +116,7 @@ set ai sta et fo=croql
 set shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal shiftwidth=4 softtabstop=4
 autocmd Filetype ruby setlocal shiftwidth=2 softtabstop=2
+autocmd Filetype json setlocal shiftwidth=2 softtabstop=2
 " }
 
 "" SOLARIZED THEME {
@@ -182,8 +185,8 @@ vmap <silent> <expr> p <sid>Repl()
 "highlight Pmenu ctermbg=brown cterm=bold
 
 "Ctrl-P {
-nnoremap <Leader>o :CtrlPCurWD<CR>
-"nnoremap <Leader>o :CtrlPMixed<CR>
+" nnoremap <Leader>o :CtrlPCurFile<CR>
+nnoremap <Leader>o :CtrlPMixed<CR>
 "" Show MRU files for the current project only
 let g:ctrlp_mruf_relative = 1
 " Open files of vim in new tab
@@ -192,6 +195,11 @@ let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>'],
     \ }
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(pdf|png|jpeg|css|tmpl|gif|dat|jpg|scss|kmz|pyc)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 " }
 
 " Statusline {
@@ -235,6 +243,10 @@ set undodir=~/.vim/undo//
 " }
 
 set colorcolumn=80
+
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
 
 if filereadable(glob("~/.local_vimrc"))
 	source ~/.local_vimrc

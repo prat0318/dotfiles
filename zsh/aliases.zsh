@@ -10,3 +10,4 @@ alias vimswap='find ./ -type f -name "\.*sw[klmnop]"'
 alias vimclean='find ./ -type f -name "\.*sw[klmnop]" -delete'
 
 alias filter="sed -r 's/([^:]*):.*/\1/' | uniq | tr '\n' ' '"
+alias ccat="pygmentize -g"

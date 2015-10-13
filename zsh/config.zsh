@@ -9,9 +9,9 @@ plugins=(vi-mode extract history-substring-search pip python copyfile gitignore 
 if [ -f ~/.rvm/scripts/rvm ]; then
     source ~/.rvm/scripts/rvm
 fi
-export RUBYOPT="-I ."
+# export RUBYOPT="-I ."
 
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/.npm_global/bin
 
 export JAVA_HOME=/usr/lib/jvm/default-java
 
