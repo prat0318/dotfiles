@@ -59,4 +59,5 @@ then
   source ~/.localrc
 fi
 
+source /usr/local/bin/virtualenvwrapper.sh
 workon mypy27

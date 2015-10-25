@@ -84,7 +84,6 @@ set wildmenu   " visual autocomplete for command menu
 set ignorecase "ignore case
 set numberwidth=3 "Col width when printing line nos.
 set shortmess+=IA "no intro message, no swap-file message
-" set pastetoggle=<F3>
 set tabpagemax=100
 set vb t_vb= " set silent (no beep)
 " nnoremap <F2> :set nonumber!<CR>
