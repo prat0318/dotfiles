@@ -159,8 +159,8 @@ nmap <Leader>g %
 vmap <Leader>g %
 nmap <Leader>/ y:noh<CR>
 map <Leader>cd :cd %:p:h<CR>
-vmap <Leader>f y:grep -Ir '<C-R>"' *<CR>
-vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
+vmap <Leader>r y:grep -Ir '<C-R>"' *<CR>
+vmap <Leader>f y:Ggrep '<C-R>"' *<CR>
 nnoremap <Leader><CR> m`o<Esc>``| " put a new line after this line
 :vmap * y/<C-R>"<CR>| " Search highlighted
 :vmap <leader>s y:<C-U>%s/\<<c-r>"\>/| " Pull Visually Hghlghtd text to LHS of a substitute
