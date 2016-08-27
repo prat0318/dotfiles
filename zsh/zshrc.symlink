@@ -1,3 +1,4 @@
+export DISABLE_AUTO_UPDATE=true
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
@@ -59,3 +60,5 @@ fi
 
 source /usr/local/bin/virtualenvwrapper.sh
 workon mypy27
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

@@ -399,14 +399,14 @@
 	<key>MaxVertically</key>
 	<false/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/.dotfiles/iterm2</string>
-	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{712, 448}</string>
+	<string>~/Downloads</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
+	<false/>
+	<key>NSScrollViewShouldScrollUnderTitlebar</key>
 	<false/>
 	<key>NSTableView Columns KeyBingingTable</key>
 	<array>
@@ -419,7 +419,7 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>302</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
@@ -431,9 +431,29 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>2334 270 924 485 1920 0 1920 1177 </string>
+	<string>505 272 606 456 0 0 1440 877 </string>
+	<key>NSWindow Frame UKCrashReporter</key>
+	<string>-1553 293 592 584 -1680 -150 1680 1027 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>1920 0 1914 1177 1920 0 1920 1177 </string>
+	<string>4 0 1431 877 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>4 413 570 451 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>453 312 570 451 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 3</key>
+	<string>225 22 570 451 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 4</key>
+	<string>246 426 570 451 0 0 1440 877 </string>
+	<key>NSWindow Frame iTerm Window 5</key>
+	<string>267 427 570 451 0 0 1440 878 </string>
+	<key>NSWindow Frame iTerm Window 6</key>
+	<string>288 427 570 451 0 0 1440 878 </string>
+	<key>NSWindow Frame iTerm Window 7</key>
+	<string>309 410 570 451 0 0 1440 878 </string>
+	<key>NSWindow Frame iTerm Window 8</key>
+	<string>330 387 570 451 0 0 1440 878 </string>
+	<key>NSWindow Frame iTerm Window 9</key>
+	<string>351 364 570 451 0 0 1440 878 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1253,10 +1273,8 @@
 			<string>/Users/prat0318</string>
 		</dict>
 	</array>
-	<key>NoSyncTimeOfLastPromo</key>
-	<real>454881532.929856</real>
-	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>462409107.116678</real>
+	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
+	<real>477940776.68990397</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1305,7 +1323,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/agarwal/.dotfiles/iterm2</string>
+	<string>/Users/prat0318/.dotfiles/iterm2</string>
 	<key>PromptOnQuit</key>
 	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
@@ -1315,13 +1333,15 @@
 	<key>RightOption</key>
 	<integer>3</integer>
 	<key>SUEnableAutomaticChecks</key>
-	<true/>
+	<false/>
+	<key>SUFeedAlternateAppNameKey</key>
+	<string>iTerm</string>
 	<key>SUFeedURL</key>
 	<string>http://iterm2.com/appcasts/final.xml</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-08-27T22:57:54Z</date>
+	<date>2016-08-27T20:00:39Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -1360,6 +1380,10 @@
 	<true/>
 	<key>UseLionStyleFullscreen</key>
 	<true/>
+	<key>WebKitDefaultFontSize</key>
+	<integer>11</integer>
+	<key>WebKitStandardFont</key>
+	<string>.Helvetica Neue DeskInterface</string>
 	<key>Window Arrangements</key>
 	<dict>
 		<key>Arrangement 1</key>
@@ -3703,6 +3727,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>2.1.1</string>
+	<string>2.0</string>
 </dict>
 </plist>
