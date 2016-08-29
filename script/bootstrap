@@ -140,4 +140,6 @@ echo '  All installed!'
 
 echo ' Creating ~/.vim/swp directory...'
 mkdir ~/.vim/backup ~/.vim/swap ~/.vim/undo
+echo ' Adding yaml.vim syntax highlighter...'
+wget http://www.vim.org/scripts/download_script.php?src_id=2249 -O ~/.vim/yaml.vim
 echo ' Done.'

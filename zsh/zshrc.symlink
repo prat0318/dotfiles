@@ -35,6 +35,7 @@ done
 unset config_files
 
 ZSH_THEME="robbyrussell"
+DISABLE_AUTO_UPDATE="true"
 
 source $HOME/.oh-my-zsh/oh-my-zsh.sh
 

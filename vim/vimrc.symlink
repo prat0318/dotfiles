@@ -24,6 +24,7 @@ NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'Valloric/ListToggle'
 NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'elzr/vim-json'
+NeoBundle 'rodjek/vim-puppet'
 
 call neobundle#end()
 
@@ -37,6 +38,9 @@ let mapleader = "\<Space>"
 syntax on
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc     " MacOSX/Linux
+
+"set breakpoint before pasting text
+inoremap <C-R> <C-G>u<C-R>
 
 "global ycm_conf {
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -98,7 +102,8 @@ set pastetoggle=<F2>
 
 " File types {
 let g:vim_json_warnings=0
-au BufRead,BufNewFile *.yaml set filetype=yaml
+  au BufRead,BufNewFile *.yaml set filetype=txt
+  au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
 " }
 
 " Tab movements {
@@ -142,13 +147,9 @@ call expand_region#custom_text_objects({
       \ })
 " }
 
-" To be removed...
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-vmap <Leader>p "+p
-nmap <Leader>P "+P
-" ... till here.
+" delete to blackhole {
+vmap <Leader>d "_d
+" }
 
 " map space to leader and define more mappings {
 nmap <Leader>i ^
@@ -203,7 +204,7 @@ let g:ctrlp_custom_ignore = {
 " }
 
 " Statusline {
-set statusline=%t%h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P "show git branch
+set statusline=%F\ %h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P "show git branch
 set laststatus=2
 highlight statusline cterm=bold ctermbg=black ctermfg=grey 
 " }
