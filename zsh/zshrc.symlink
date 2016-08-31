@@ -60,4 +60,7 @@ then
   source ~/.localrc
 fi
 
-workon mypy27
+function goto_es () ssh -A $(mco find -1 -F ecosystem==$1 -F elasticsearch_cluster==$2) ${@:3}
+function goto_cass () ssh -A $(mco find -1 -F ecosystem==$1 -F cassandra_cluster==$2) ${@:3}
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
