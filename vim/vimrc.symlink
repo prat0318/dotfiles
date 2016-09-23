@@ -6,7 +6,7 @@ if has('vim_starting')
 endif
 
 let NeoBundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-if !filereadable(NeoBundle_readme)
+if filereadable(NeoBundle_readme)
     " Required:
     call neobundle#begin(expand('~/.vim/bundle/'))
 
