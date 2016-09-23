@@ -52,6 +52,8 @@ set -k
 setopt NO_HUP
 setopt NO_CHECK_JOBS
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo.
 # will override any of public configs
@@ -60,7 +62,4 @@ then
   source ~/.localrc
 fi
 
-function goto_es () ssh -A $(mco find -1 -F ecosystem==$1 -F elasticsearch_cluster==$2) ${@:3}
-function goto_cass () ssh -A $(mco find -1 -F ecosystem==$1 -F cassandra_cluster==$2) ${@:3}
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+workon mypy27
