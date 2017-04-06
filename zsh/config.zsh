@@ -32,9 +32,6 @@ function options() {
     done
 }
 
-# vim backup files
-mkdir -p ~/.vim/backup ~/.vim/swap ~/.vim/undo
-
 function vgrep() {
     vim -p `git grep --name-only $1`
 }

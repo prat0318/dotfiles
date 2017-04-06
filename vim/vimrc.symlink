@@ -1,65 +1,38 @@
 if has('vim_starting')
  set nocompatible               " Be iMproved
 
-" Required:
+ " Required:
  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-let NeoBundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-if filereadable(NeoBundle_readme)
-    " Required:
-    call neobundle#begin(expand('~/.vim/bundle/'))
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
 
-    " Let NeoBundle manage NeoBundle
-    " Required:
-    NeoBundleFetch 'Shougo/neobundle.vim'
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-    " My Bundles here:
-    NeoBundle 'terryma/vim-expand-region'
-    NeoBundle 'scrooloose/nerdtree'
-    NeoBundle 'jistr/vim-nerdtree-tabs'
-    NeoBundle 'scrooloose/syntastic'
-    NeoBundle 'kien/ctrlp.vim'
-    NeoBundle 'tpope/vim-fugitive'
-    NeoBundle 'tpope/vim-endwise'
-    NeoBundle 'Valloric/YouCompleteMe'
-    NeoBundle 'Valloric/ListToggle'
-    NeoBundle 'altercation/vim-colors-solarized'
-    NeoBundle 'elzr/vim-json'
-    NeoBundle 'rodjek/vim-puppet'
+" My Bundles here:
+NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'kien/ctrlp.vim'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'Valloric/YouCompleteMe'
+NeoBundle 'Valloric/ListToggle'
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'rodjek/vim-puppet'
 
-    call neobundle#end()
+call neobundle#end()
 
-    "" SOLARIZED THEME {
-    set background=dark
-    set t_Co=16
-    let g:solarized_termcolors=16
-    colorscheme solarized
-    " }
-
-    "Expand visual region settings {
-    vmap v <Plug>(expand_region_expand)
-    vmap <C-v> <Plug>(expand_region_shrink)
-
-    call expand_region#custom_text_objects({
-          \ "\/\\n\\n\<CR>": 1,
-          \ "a'" :1,
-          \ 'a"' :1,
-          \ 'a]' :1,
-          \ 'ab' :1,
-          \ 'aB' :1,
-          \ 'ii' :0,
-          \ 'ai' :0,
-          \ })
-    " }
-
-endif
+filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-" NeoBundleCheck
-
-filetype plugin indent on
+NeoBundleCheck
 
 let mapleader = "\<Space>"
 syntax on
@@ -123,7 +96,7 @@ inoremap jk <Esc>l| "try to shift right one char to go back to same place
 vnoremap <silent> y y`]| "go back to original point after selection
 set matchpairs+=<:> "match < and > for C++ templates
 set backspace=indent,eol,start "Specific to mac with ssh session (delete key)
-" imap <C-v> "+p| "Auto :set paste during paste
+imap <C-v> "+p| "Auto :set paste during paste
 set pastetoggle=<F2>
 " }
 
@@ -149,6 +122,29 @@ set shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal shiftwidth=4 softtabstop=4
 autocmd Filetype ruby setlocal shiftwidth=2 softtabstop=2
 autocmd Filetype json setlocal shiftwidth=2 softtabstop=2
+" }
+
+"" SOLARIZED THEME {
+set background=dark
+set t_Co=16
+let g:solarized_termcolors=16
+colorscheme solarized
+" }
+
+"Expand visual region settings {
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+call expand_region#custom_text_objects({
+      \ "\/\\n\\n\<CR>": 1,
+      \ "a'" :1,
+      \ 'a"' :1,
+      \ 'a]' :1,
+      \ 'ab' :1,
+      \ 'aB' :1,
+      \ 'ii' :0,
+      \ 'ai' :0,
+      \ })
 " }
 
 " delete to blackhole {
@@ -208,9 +204,9 @@ let g:ctrlp_custom_ignore = {
 " }
 
 " Statusline {
-set statusline=%F\ %h%m%r%y%=%c,%l/%L\ %P "show git branch
+set statusline=%F\ %h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P "show git branch
 set laststatus=2
-highlight statusline cterm=bold ctermbg=black ctermfg=grey
+highlight statusline cterm=bold ctermbg=black ctermfg=grey 
 " }
 
 " Quickly edit/reload the vimrc file {
@@ -254,5 +250,5 @@ nnoremap j gj
 nnoremap k gk
 
 if filereadable(glob("~/.local_vimrc"))
-   source ~/.local_vimrc
+	source ~/.local_vimrc
 endif
