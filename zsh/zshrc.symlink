@@ -44,6 +44,9 @@ source $HOME/.oh-my-zsh/oh-my-zsh.sh
 
 bindkey '^k' history-substring-search-up
 bindkey '^j' history-substring-search-down
+bindkey '^h' backward-word
+bindkey '^l' forward-word
+bindkey '^o' copy-prev-shell-word
 
 # Let zsh ignore lines starting with '#'
 set -k
@@ -60,4 +63,14 @@ then
   source ~/.localrc
 fi
 
-workon mypy27
+mkdir -p ~/.vim/backup ~/.vim/swap ~/.vim/undo
+
+function goto_es () ssh -A $(mco find -1 -F ecosystem==$1 -F elasticsearch_cluster==$2) ${@:3}
+function list_es () python -c "import yaml; import glob; print set.union(*[set(yaml.load(open(a).read())['clusters']) for a in glob.glob('/nail/etc/datastores/*/elasticsearch/clusters.yaml')])"
+function goto_cass () ssh -A $(mco find -1 -F ecosystem==$1 -F cassandra_cluster==$2) ${@:3}
+function list_cass () python -c "import yaml; import glob; print set.union(*[set(yaml.load(open(a).read())['clusters']) for a in glob.glob('/nail/etc/datastores/*/cassandra/clusters.yaml')])"
+
+function datastores () echo 'import os; import re; import subprocess; from collections import defaultdict; TYPE=os.getenv("datastore", "elasticsearch"); regex1 = re.compile(r"\\s*(\\S*?)\\s+found \\d+ times\\n\\n(.+?)(?:\\n\\n|\\Z)", re.MULTILINE|re.DOTALL); regex2 = re.compile(r"\\s+(\\S+)-(us(?:we|ea)st\\d).(\\w+)")\ndata = subprocess.check_output("mco facts -v {0}_cluster --threaded".format(TYPE), shell=True)\nfor cluster, hosts in regex1.findall(data):\n    print "\\n", cluster, ": "; result = defaultdict(lambda: defaultdict(list))\n    for host in regex2.findall(hosts): result[host[2]][host[1]].append(host[0])\n    for env in result: print env, dict(result[env])\n' | python
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+alias awsinfo="curl http://169.254.169.254/latest/meta-data/"
