@@ -15,19 +15,28 @@ if filereadable(NeoBundle_readme)
     NeoBundleFetch 'Shougo/neobundle.vim'
 
     " My Bundles here:
-    NeoBundle 'terryma/vim-expand-region'
     NeoBundle 'scrooloose/nerdtree'
     NeoBundle 'jistr/vim-nerdtree-tabs'
-    NeoBundle 'scrooloose/syntastic'
-    NeoBundle 'kien/ctrlp.vim'
-    NeoBundle 'tpope/vim-fugitive'
-    NeoBundle 'tpope/vim-endwise'
     NeoBundle 'Valloric/YouCompleteMe'
+    " For syntax checking
+    NeoBundle 'scrooloose/syntastic'
+    " fuzzy file navigator
+    NeoBundle 'kien/ctrlp.vim'
+    " visual selection expansion
+    NeoBundle 'terryma/vim-expand-region'
+    " GBlame and stuff
+    NeoBundle 'tpope/vim-fugitive'
+    " Add end for every if in ruby, and likewise
+    NeoBundle 'tpope/vim-endwise'
+    " for F7, F8 : hide show error list
     NeoBundle 'Valloric/ListToggle'
-    NeoBundle 'altercation/vim-colors-solarized'
-    NeoBundle 'elzr/vim-json'
-    NeoBundle 'rodjek/vim-puppet'
+    " Tabularize assignments, tables display
     NeoBundle 'godlygeek/tabular'
+    " solarized vim theme
+    NeoBundle 'altercation/vim-colors-solarized'
+    " highlight json
+    NeoBundle 'elzr/vim-json'
+    " highligh markdown
     NeoBundle 'plasticboy/vim-markdown'
 
     call neobundle#end()
@@ -66,7 +75,7 @@ filetype plugin indent on
 let mapleader = "\<Space>"
 syntax on
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc,*.javax   " MacOSX/Linux
 
 "set breakpoint before pasting text
 inoremap <C-R> <C-G>u<C-R>
@@ -103,7 +112,7 @@ let g:syntastic_always_populate_loc_list = 1
 
 " NerdTree settings {
 let NERDTreeMapActivateNode='f'
-let NERDTreeIgnore = ['\.pyc$', '\.out$']
+let NERDTreeIgnore = ['\.pyc$', '\.javac$', '\.out$']
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeWinSize=28
 nnoremap <F3> :NERDTreeFind<CR>
@@ -140,10 +149,12 @@ endif
 " Tab movements {
 inoremap <C-h> <Esc>:tabprevious<CR>
 nnoremap <C-h> :tabprevious<CR>
+" below is to move current tab left by 1
 nnoremap <Leader>h :execute "tabmove" tabpagenr() - 2 <CR>
 
 inoremap <C-l> <Esc>:tabnext<CR>
 nnoremap <C-l> :tabnext<CR>
+" below is to move current tab right by 1
 nnoremap <Leader>l :execute "tabmove" tabpagenr() <CR>
 " }
 
@@ -164,6 +175,7 @@ nmap <Leader>i ^
 vmap <Leader>i ^
 nmap <Leader>a $
 vmap <Leader>a $h| "h is to shift left one character
+" jump to the matching paren
 nmap <Leader>g %
 vmap <Leader>g %
 nmap <Leader>/ y:noh<CR>
@@ -189,9 +201,6 @@ function! s:Repl()
 endfunction
 vmap <silent> <expr> p <sid>Repl()
 " }
-
-"terminator: highlight Pmenu color from purple to more visible
-"highlight Pmenu ctermbg=brown cterm=bold
 
 "Ctrl-P {
 " nnoremap <Leader>o :CtrlPCurFile<CR>
@@ -253,7 +262,7 @@ set undodir=~/.vim/undo//
 
 set colorcolumn=80
 
-" move vertically by visual line
+" move vertically by visual line in case of line spanning multiple lines
 nnoremap j gj
 nnoremap k gk
 

@@ -1,5 +1,6 @@
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
+# export ZSH=$HOME/.oh-my-zsh
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/projects
@@ -65,12 +66,32 @@ fi
 
 mkdir -p ~/.vim/backup ~/.vim/swap ~/.vim/undo
 
-function goto_es () ssh -A $(mco find -1 -F ecosystem==$1 -F elasticsearch_cluster==$2) ${@:3}
-function list_es () python -c "import yaml; import glob; print set.union(*[set(yaml.load(open(a).read())['clusters']) for a in glob.glob('/nail/etc/datastores/*/elasticsearch/clusters.yaml')])"
-function goto_cass () ssh -A $(mco find -1 -F ecosystem==$1 -F cassandra_cluster==$2) ${@:3}
-function list_cass () python -c "import yaml; import glob; print set.union(*[set(yaml.load(open(a).read())['clusters']) for a in glob.glob('/nail/etc/datastores/*/cassandra/clusters.yaml')])"
-
-function datastores () echo 'import os; import re; import subprocess; from collections import defaultdict; TYPE=os.getenv("datastore", "elasticsearch"); regex1 = re.compile(r"\\s*(\\S*?)\\s+found \\d+ times\\n\\n(.+?)(?:\\n\\n|\\Z)", re.MULTILINE|re.DOTALL); regex2 = re.compile(r"\\s+(\\S+)-(us(?:we|ea)st\\d).(\\w+)")\ndata = subprocess.check_output("mco facts -v {0}_cluster --threaded".format(TYPE), shell=True)\nfor cluster, hosts in regex1.findall(data):\n    print "\\n", cluster, ": "; result = defaultdict(lambda: defaultdict(list))\n    for host in regex2.findall(hosts): result[host[2]][host[1]].append(host[0])\n    for env in result: print env, dict(result[env])\n' | python
-
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 alias awsinfo="curl http://169.254.169.254/latest/meta-data/"
+
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
+source /usr/local/bin/virtualenvwrapper.sh
+workon python27
+
+# AppD codebase basics
+export PATH=$PATH:~/appdy/codebase:~/appdy/codebase/tools
+
+export CODEBASE=~/appdy/codebase
+export ANT_OPTS='-Dstart-glassfish-in-debug-mode=true'
+export GRADLE_OPTS='-Dstart-glassfish-in-debug-mode=true -Dorg.gradle.daemon=true -Dorg.gradle.configureondemand=true'
+
+function jdk7 {
+    # See http://stackoverflow.com/questions/27558903/why-does-this-bash-pathname-expansion-not-take-place
+    a=(/Library/Java/JavaVirtualMachines/jdk1.7.*.jdk/Contents/Home)
+    export JAVA_HOME="${a[@]}"
+}
+
+function jdk8 {
+    a=(/Library/Java/JavaVirtualMachines/jdk1.8.*.jdk/Contents/Home)
+    export JAVA_HOME="${a[@]}"
+}
+
+alias jdk="env | grep JAVA_HOME"
+jdk8
