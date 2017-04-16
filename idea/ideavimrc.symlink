@@ -1,5 +1,5 @@
 " Enter the command-line mode
-noremap jk :
+inoremap jk <Esc>
 
 " Reload .ideavimrc
-nnoremap <Space>vs :source ~/.ideavimrc<CR>
+nnoremap <Space>sv :source ~/.ideavimrc<CR>
