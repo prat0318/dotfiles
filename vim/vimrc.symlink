@@ -134,7 +134,9 @@ inoremap jk <Esc>l| "try to shift right one char to go back to same place
 vnoremap <silent> y y`]| "go back to original point after selection
 set matchpairs+=<:> "match < and > for C++ templates
 set backspace=indent,eol,start "Specific to mac with ssh session (delete key)
-imap <C-v> "+p| "Auto :set paste during paste
+"imap <C-v> "+p| "Auto :set paste during paste : DEPRECATED
+inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>i
+vnoremap <C-c> :w !pbcopy<CR><CR>
 set pastetoggle=<F2>
 " }
 
