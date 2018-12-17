@@ -26,6 +26,7 @@ if filereadable(NeoBundle_readme)
     NeoBundle 'terryma/vim-expand-region'
     " GBlame and stuff
     NeoBundle 'tpope/vim-fugitive'
+    NeoBundle 'tpope/vim-surround'
     " Add end for every if in ruby, and likewise
     NeoBundle 'tpope/vim-endwise'
     " for F7, F8 : hide show error list
@@ -50,7 +51,7 @@ if filereadable(NeoBundle_readme)
 
     "Expand visual region settings {
     vmap v <Plug>(expand_region_expand)
-    vmap <C-v> <Plug>(expand_region_shrink)
+    vmap V <Plug>(expand_region_shrink)
 
     call expand_region#custom_text_objects({
           \ "\/\\n\\n\<CR>": 1,
@@ -131,20 +132,24 @@ set tabpagemax=100
 set vb t_vb= " set silent (no beep)
 " nnoremap <F2> :set nonumber!<CR>
 inoremap jk <Esc>l| "try to shift right one char to go back to same place
+" vnoremap jkjk <Esc>l| "try to shift right one char to go back to same place
 vnoremap <silent> y y`]| "go back to original point after selection
 set matchpairs+=<:> "match < and > for C++ templates
 set backspace=indent,eol,start "Specific to mac with ssh session (delete key)
-"imap <C-v> "+p| "Auto :set paste during paste : DEPRECATED
-inoremap <C-v> <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>i
-vnoremap <C-c> :w !pbcopy<CR><CR>
+
+" copy paste stuff
+" nnoremap <C-v> :set paste<CR>:-1r !pbpaste<CR>:set nopaste<CR>| starts above or below the cursor
+" inoremap <C-v> <Esc>:set paste<CR>:-1r !pbpaste<CR>:set nopaste<CR>i| starts above or below the cursor
+"vnoremap <C-c> :w !pbcopy<CR><CR>| deprecated as it copies whole line
+vnoremap <C-c> :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
 set pastetoggle=<F2>
 " }
 
 " File types {
 let g:vim_json_warnings=0
 au BufRead,BufNewFile *.yaml set filetype=txt
-if filereadable("~/.vim/yaml.vim")
-      au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
+if filereadable(expand('~/.vim/yaml.vim'))
+    au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
 endif
 " }
 
@@ -152,17 +157,17 @@ endif
 inoremap <C-h> <Esc>:tabprevious<CR>
 nnoremap <C-h> :tabprevious<CR>
 " below is to move current tab left by 1
-nnoremap <Leader>h :execute "tabmove" tabpagenr() - 2 <CR>
+nnoremap <Leader>h :tabm -1 <CR>
 
 inoremap <C-l> <Esc>:tabnext<CR>
 nnoremap <C-l> :tabnext<CR>
 " below is to move current tab right by 1
-nnoremap <Leader>l :execute "tabmove" tabpagenr() <CR>
+nnoremap <Leader>l :tabm +1 <CR>
 " }
 
 " Indent setting for all {
 set ai sta et fo=croql
-set shiftwidth=4 softtabstop=4
+set shiftwidth=2 softtabstop=2
 autocmd Filetype python setlocal shiftwidth=4 softtabstop=4
 autocmd Filetype ruby setlocal shiftwidth=2 softtabstop=2
 autocmd Filetype json setlocal shiftwidth=2 softtabstop=2
@@ -267,6 +272,18 @@ set colorcolumn=80
 " move vertically by visual line in case of line spanning multiple lines
 nnoremap j gj
 nnoremap k gk
+
+" highlight tabs {
+highlight SpecialKey ctermfg=1
+set list
+set listchars=tab:T>
+" }
+
+" associate *.kt with java filetype {
+" augroup filetypedetect
+"     au BufRead,BufNewFile *.kt setfiletype java
+" augroup END
+" }
 
 if filereadable(glob("~/.local_vimrc"))
    source ~/.local_vimrc
