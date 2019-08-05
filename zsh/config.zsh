@@ -13,7 +13,7 @@ fi
 
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:~/.npm_global/bin
 
-export JAVA_HOME=/usr/lib/jvm/default-java
+# export JAVA_HOME=/usr/lib/jvm/default-java
 
 export CLASSPATH=.:$CLASSPATH
 # export PYTHONPATH=/usr/lib/python2.7/dist-packages/:$PYTHONPATH

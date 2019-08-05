@@ -15,9 +15,9 @@ if filereadable(NeoBundle_readme)
     NeoBundleFetch 'Shougo/neobundle.vim'
 
     " My Bundles here:
-    NeoBundle 'scrooloose/nerdtree'
-    NeoBundle 'jistr/vim-nerdtree-tabs'
-    NeoBundle 'Valloric/YouCompleteMe'
+    " NeoBundle 'scrooloose/nerdtree'
+    " NeoBundle 'jistr/vim-nerdtree-tabs'
+    " NeoBundle 'Valloric/YouCompleteMe'
     " For syntax checking
     NeoBundle 'scrooloose/syntastic'
     " fuzzy file navigator
@@ -26,19 +26,21 @@ if filereadable(NeoBundle_readme)
     NeoBundle 'terryma/vim-expand-region'
     " GBlame and stuff
     NeoBundle 'tpope/vim-fugitive'
-    NeoBundle 'tpope/vim-surround'
+    " NeoBundle 'tpope/vim-surround'
     " Add end for every if in ruby, and likewise
-    NeoBundle 'tpope/vim-endwise'
+    " NeoBundle 'tpope/vim-endwise'
     " for F7, F8 : hide show error list
-    NeoBundle 'Valloric/ListToggle'
+    " NeoBundle 'Valloric/ListToggle'
     " Tabularize assignments, tables display
-    NeoBundle 'godlygeek/tabular'
+    " NeoBundle 'godlygeek/tabular'
     " solarized vim theme
     NeoBundle 'altercation/vim-colors-solarized'
     " highlight json
     NeoBundle 'elzr/vim-json'
-    " highligh markdown
+    " highlight markdown
     NeoBundle 'plasticboy/vim-markdown'
+    " highlight yaml
+    NeoBundle 'avakhov/vim-yaml'
 
     call neobundle#end()
 
@@ -147,10 +149,10 @@ set pastetoggle=<F2>
 
 " File types {
 let g:vim_json_warnings=0
-au BufRead,BufNewFile *.yaml set filetype=txt
-if filereadable(expand('~/.vim/yaml.vim'))
-    au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
-endif
+" au BufRead,BufNewFile *.yaml set filetype=txt
+" if filereadable(expand('~/.vim/yaml.vim'))
+"     au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
+" endif
 " }
 
 " Tab movements {
@@ -288,3 +290,5 @@ set listchars=tab:T>
 if filereadable(glob("~/.local_vimrc"))
    source ~/.local_vimrc
 endif
+
+" set mouse=a

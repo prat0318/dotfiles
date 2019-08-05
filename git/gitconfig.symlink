@@ -1,9 +1,10 @@
 [user]
 	name = Prateek Agarwal
-	email = prateek.agarwal@appdynamics.com
+	email = prateeka@uber.com
 	 
 [branch]
 	autosetupmerge = true
+	autosetuprebase = always
 	 
 [branch "master"]
 	remote = origin
@@ -63,3 +64,17 @@
 	oldHighlight = red bold 52
 	newNormal = green bold
 	newHighlight = green bold 22
+[rerere]
+	enabled = true
+[url "ssh://gitolite@code.uber.internal/"]
+	insteadOf = git://code.uber.internal/
+[url "ssh://git@github.com/uber/"]
+	insteadOf = https://github.com/uber/
+[url "ssh://code.uber.internal/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://config.uber.internal/"]
+	insteadOf = https://config.uber.internal/
+[http "https://gopkg.uberinternal.com"]
+	followRedirects = true
+[http "https://gopkg.in"]
+	followRedirects = true
