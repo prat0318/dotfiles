@@ -97,4 +97,3 @@ PROMPT="%{$fg[white]%}%n@%{$fg[green]%}%m%{$reset_color%} ${PROMPT}"
 # export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python
 # source /usr/local/bin/virtualenvwrapper.sh
 # workon python27
->>>>>>> uber
