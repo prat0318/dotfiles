@@ -12,14 +12,14 @@ set -g prefix C-a
 set -s escape-time 1
 
 # Enable mouse movements.
-#setw -g mode-mouse off
-#
+setw -g mode-mouse on
+
 ## Enable pane selection via the mouse.
 #set -g mouse-select-pane on
-#
+
 ## Enable the mouse to resize panes.
 #set -g mouse-resize-pane on
-#
+
 ## Enable the mouse to change the current window.
 #set -g mouse-select-window on
 
@@ -96,7 +96,8 @@ set -g display-panes-colour brightred #orange
 set -g clock-mode-colour green #green
 
 # Make the left side of our status bar display the hostname.
-set -g status-left "#H"
+set -g status-left-length 25
+set -g status-left "#H:#S"
 
 # Display the date and time on the right side of the status bar.
 set -g status-right "%m-%d-%Y @ %r %Z"
