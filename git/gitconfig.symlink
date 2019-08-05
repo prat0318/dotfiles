@@ -1,9 +1,11 @@
 [user]
 	name = Prateek Agarwal
 	email = prat0318@gmail.com
+
 	 
 [branch]
 	autosetupmerge = true
+	autosetuprebase = always
 	 
 [branch "master"]
 	remote = origin
@@ -21,9 +23,9 @@
 	 
 [alias]
 	st = status
+	br = branch --sort=-committerdate
 	l= log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 	ci = commit
-	br = branch
 	co = checkout
 	df = diff
 	lg = log -p
@@ -58,3 +60,26 @@
       grep = false
 [difftool]
 	prompt = false
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[rerere]
+	enabled = true
+[url "ssh://gitolite@code.uber.internal/"]
+	insteadOf = git://code.uber.internal/
+[url "ssh://git@github.com/uber/"]
+	insteadOf = https://github.com/uber/
+[url "ssh://code.uber.internal/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://config.uber.internal/"]
+	insteadOf = https://config.uber.internal/
+[http "https://gopkg.uberinternal.com"]
+	followRedirects = true
+[http "https://gopkg.in"]
+	followRedirects = true
+[credential "https://git.uberinternal.com"]
+	helper = usso
+[credential "https://vfs4g-cache.uberinternal.com"]
+	helper = usso

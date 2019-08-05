@@ -1,42 +1,87 @@
 if has('vim_starting')
  set nocompatible               " Be iMproved
 
- " Required:
+" Required:
  set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
 
-" Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+let NeoBundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
+if filereadable(NeoBundle_readme)
+    " Required:
+    call neobundle#begin(expand('~/.vim/bundle/'))
 
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+    " Let NeoBundle manage NeoBundle
+    " Required:
+    NeoBundleFetch 'Shougo/neobundle.vim'
 
-" My Bundles here:
-NeoBundle 'terryma/vim-expand-region'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'Valloric/ListToggle'
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'elzr/vim-json'
+    " My Bundles here:
+    " NeoBundle 'scrooloose/nerdtree'
+    " NeoBundle 'jistr/vim-nerdtree-tabs'
+    " NeoBundle 'Valloric/YouCompleteMe'
+    " For syntax checking
+    NeoBundle 'scrooloose/syntastic'
+    " fuzzy file navigator
+    NeoBundle 'kien/ctrlp.vim'
+    " visual selection expansion
+    NeoBundle 'terryma/vim-expand-region'
+    " GBlame and stuff
+    NeoBundle 'tpope/vim-fugitive'
+    " NeoBundle 'tpope/vim-surround'
+    " Add end for every if in ruby, and likewise
+    " NeoBundle 'tpope/vim-endwise'
+    " for F7, F8 : hide show error list
+    " NeoBundle 'Valloric/ListToggle'
+    " Tabularize assignments, tables display
+    " NeoBundle 'godlygeek/tabular'
+    " solarized vim theme
+    NeoBundle 'altercation/vim-colors-solarized'
+    " highlight json
+    NeoBundle 'elzr/vim-json'
+    " highlight markdown
+    NeoBundle 'plasticboy/vim-markdown'
+    " highlight yaml
+    NeoBundle 'avakhov/vim-yaml'
 
-call neobundle#end()
+    call neobundle#end()
 
-filetype plugin indent on
+    "" SOLARIZED THEME {
+    set background=dark
+    set t_Co=16
+    let g:solarized_termcolors=16
+    colorscheme solarized
+    " }
+
+    "Expand visual region settings {
+    vmap v <Plug>(expand_region_expand)
+    vmap V <Plug>(expand_region_shrink)
+
+    call expand_region#custom_text_objects({
+          \ "\/\\n\\n\<CR>": 1,
+          \ "a'" :1,
+          \ 'a"' :1,
+          \ 'a]' :1,
+          \ 'ab' :1,
+          \ 'aB' :1,
+          \ 'ii' :0,
+          \ 'ai' :0,
+          \ })
+    " }
+
+endif
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-NeoBundleCheck
+" NeoBundleCheck
+
+filetype plugin indent on
 
 let mapleader = "\<Space>"
 syntax on
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.d,*.o,*.pyc,*.javax   " MacOSX/Linux
+
+"set breakpoint before pasting text
+inoremap <C-R> <C-G>u<C-R>
 
 "global ycm_conf {
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -70,7 +115,7 @@ let g:syntastic_always_populate_loc_list = 1
 
 " NerdTree settings {
 let NERDTreeMapActivateNode='f'
-let NERDTreeIgnore = ['\.pyc$', '\.out$']
+let NERDTreeIgnore = ['\.pyc$', '\.javac$', '\.out$']
 let g:nerdtree_tabs_open_on_console_startup=0
 let NERDTreeWinSize=28
 nnoremap <F3> :NERDTreeFind<CR>
@@ -88,78 +133,63 @@ set tabpagemax=100
 set vb t_vb= " set silent (no beep)
 " nnoremap <F2> :set nonumber!<CR>
 inoremap jk <Esc>l| "try to shift right one char to go back to same place
+" vnoremap jkjk <Esc>l| "try to shift right one char to go back to same place
 vnoremap <silent> y y`]| "go back to original point after selection
 set matchpairs+=<:> "match < and > for C++ templates
 set backspace=indent,eol,start "Specific to mac with ssh session (delete key)
-imap <C-v> "+p| "Auto :set paste during paste
+
+" copy paste stuff
+" nnoremap <C-v> :set paste<CR>:-1r !pbpaste<CR>:set nopaste<CR>| starts above or below the cursor
+" inoremap <C-v> <Esc>:set paste<CR>:-1r !pbpaste<CR>:set nopaste<CR>i| starts above or below the cursor
+"vnoremap <C-c> :w !pbcopy<CR><CR>| deprecated as it copies whole line
+vnoremap <C-c> :<CR>:let @a=@" \| execute "normal! vgvy" \| let res=system("pbcopy", @") \| let @"=@a<CR>
 set pastetoggle=<F2>
 " }
 
 " File types {
 let g:vim_json_warnings=0
-au BufRead,BufNewFile *.yaml set filetype=yaml
+" au BufRead,BufNewFile *.yaml set filetype=txt
+" if filereadable(expand('~/.vim/yaml.vim'))
+"     au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
+" endif
 " }
 
 " Tab movements {
 inoremap <C-h> <Esc>:tabprevious<CR>
 nnoremap <C-h> :tabprevious<CR>
-nnoremap <Leader>h :execute "tabmove" tabpagenr() - 2 <CR>
+" below is to move current tab left by 1
+nnoremap <Leader>h :tabm -1 <CR>
 
 inoremap <C-l> <Esc>:tabnext<CR>
 nnoremap <C-l> :tabnext<CR>
-nnoremap <Leader>l :execute "tabmove" tabpagenr() <CR>
+" below is to move current tab right by 1
+nnoremap <Leader>l :tabm +1 <CR>
 " }
 
 " Indent setting for all {
 set ai sta et fo=croql
-set shiftwidth=4 softtabstop=4
+set shiftwidth=2 softtabstop=2
 autocmd Filetype python setlocal shiftwidth=4 softtabstop=4
 autocmd Filetype ruby setlocal shiftwidth=2 softtabstop=2
 autocmd Filetype json setlocal shiftwidth=2 softtabstop=2
 " }
 
-"" SOLARIZED THEME {
-set background=dark
-set t_Co=16
-let g:solarized_termcolors=16
-colorscheme solarized
+" delete to blackhole {
+vmap <Leader>d "_d
 " }
-
-"Expand visual region settings {
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
-call expand_region#custom_text_objects({
-      \ "\/\\n\\n\<CR>": 1,
-      \ "a'" :1,
-      \ 'a"' :1,
-      \ 'a]' :1,
-      \ 'ab' :1,
-      \ 'aB' :1,
-      \ 'ii' :0,
-      \ 'ai' :0,
-      \ })
-" }
-
-" To be removed...
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-vmap <Leader>p "+p
-nmap <Leader>P "+P
-" ... till here.
 
 " map space to leader and define more mappings {
 nmap <Leader>i ^
 vmap <Leader>i ^
 nmap <Leader>a $
 vmap <Leader>a $h| "h is to shift left one character
+" jump to the matching paren
 nmap <Leader>g %
 vmap <Leader>g %
 nmap <Leader>/ y:noh<CR>
 map <Leader>cd :cd %:p:h<CR>
-vmap <Leader>f y:grep -Ir '<C-R>"' *<CR>
-vmap <Leader>r y:Ggrep '<C-R>"' *<CR>
+vmap <Leader>r y:grep -Ir '<C-R>"' *<CR>
+vmap <Leader>f y:Ggrep '<C-R>"' *<CR>
 nnoremap <Leader><CR> m`o<Esc>``| " put a new line after this line
 :vmap * y/<C-R>"<CR>| " Search highlighted
 :vmap <leader>s y:<C-U>%s/\<<c-r>"\>/| " Pull Visually Hghlghtd text to LHS of a substitute
@@ -180,9 +210,6 @@ endfunction
 vmap <silent> <expr> p <sid>Repl()
 " }
 
-"terminator: highlight Pmenu color from purple to more visible
-"highlight Pmenu ctermbg=brown cterm=bold
-
 "Ctrl-P {
 " nnoremap <Leader>o :CtrlPCurFile<CR>
 nnoremap <Leader>o :CtrlPMixed<CR>
@@ -202,9 +229,9 @@ let g:ctrlp_custom_ignore = {
 " }
 
 " Statusline {
-set statusline=%t%h%m%r%{fugitive#statusline()}%y%=%c,%l/%L\ %P "show git branch
+set statusline=%F\ %h%m%r%y%=%c,%l/%L\ %P "show git branch
 set laststatus=2
-highlight statusline cterm=bold ctermbg=black ctermfg=grey 
+highlight statusline cterm=bold ctermbg=black ctermfg=grey
 " }
 
 " Quickly edit/reload the vimrc file {
@@ -243,10 +270,24 @@ set undodir=~/.vim/undo//
 
 set colorcolumn=80
 
-" move vertically by visual line
+" move vertically by visual line in case of line spanning multiple lines
 nnoremap j gj
 nnoremap k gk
 
+" highlight tabs {
+highlight SpecialKey ctermfg=1
+set list
+set listchars=tab:T>
+" }
+
+" associate *.kt with java filetype {
+" augroup filetypedetect
+"     au BufRead,BufNewFile *.kt setfiletype java
+" augroup END
+" }
+
 if filereadable(glob("~/.local_vimrc"))
-	source ~/.local_vimrc
+   source ~/.local_vimrc
 endif
+
+" set mouse=a
