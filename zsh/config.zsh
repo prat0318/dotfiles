@@ -1,8 +1,7 @@
 fpath=($ZSH/functions $fpath)
 autoload -U $ZSH/functions/*(:t)
 
-#plugins=(ant django extract git git-flow github history-substring-search pip python ruby ssh-agent dirpersist)
-plugins=(vi-mode extract history-substring-search pip python copyfile gitignore dirpersist ssh-agent)
+plugins=(vi-mode extract history-substring-search pip python copyfile gitignore dirpersist)
 
 if [ -f ~/.rvm/scripts/rvm ]; then
     source ~/.rvm/scripts/rvm

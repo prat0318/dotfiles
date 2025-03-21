@@ -291,3 +291,8 @@ if filereadable(glob("~/.local_vimrc"))
 endif
 
 " set mouse=a
+
+" https://vi.stackexchange.com/a/9048
+nmap <kEnter> <CR>
+nmap <S-kEnter> <S-CR>
+inoremap <kEnter> <enter>

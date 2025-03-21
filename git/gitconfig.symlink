@@ -1,6 +1,6 @@
 [user]
 	name = Prateek Agarwal
-	email = prat0318@gmail.com
+	email = prateeka@uber.com
 
 	 
 [branch]
@@ -20,6 +20,7 @@
 [core]
 	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 	editor = vim
+	untrackedCache = true
 	 
 [alias]
 	st = status
@@ -40,12 +41,17 @@
 	             "!f() { git ls-files --unmerged | cut -f2 | sort -u ; }; git add `f`"
 	d = difftool
 [merge]
-	tool = vim
+	tool = meld
 [diff]
 	tool = vimdiff
 
 [mergetool]
+	prompt = false
 	keepBackup = false
+[mergetool "meld"]
+	trustExitCode = true
+	cmd = open -W -a Meld --args --auto-merge \"$PWD/$LOCAL\" \"$PWD/$BASE\" \"$PWD/$REMOTE\" --output=\"$PWD/$MERGED\"
+
 [rebase]
 	autosquash = true
 
@@ -69,8 +75,6 @@
 	enabled = true
 [url "ssh://gitolite@code.uber.internal/"]
 	insteadOf = git://code.uber.internal/
-[url "ssh://git@github.com/uber/"]
-	insteadOf = https://github.com/uber/
 [url "ssh://code.uber.internal/"]
 	insteadOf = https://code.uber.internal/
 [url "ssh://config.uber.internal/"]
@@ -83,3 +87,7 @@
 	helper = usso
 [credential "https://vfs4g-cache.uberinternal.com"]
 	helper = usso
+[http]
+	sslVerify = true
+[url "ssh://git@github.com/uber/"]
+	insteadOf = https://github.com/uber/

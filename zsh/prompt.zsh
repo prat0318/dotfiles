@@ -75,7 +75,7 @@ directory_name() {
 # To be put in themes/robyrussell.theme
 # PROMPT='$(rb_prompt)... # for rb env
 set_prompt () {
-  export RPROMPT='[%*]'
+  export RPROMPT=''
 }
 
 precmd() {
